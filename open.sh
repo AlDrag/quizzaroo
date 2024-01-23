@@ -2,11 +2,8 @@
 
 # Opens the 4 most recent quizzes
 # Dependencies:
-# - Firefox
 # - Curl
 # - JQ
-# - xargs
-# - head
 # - internet
 
 curl 'https://www.stuff.co.nz/_json/national/quizzes?limit=10' |\
