@@ -1,6 +1,5 @@
 #! /usr/bin/bash
 
-# Opens the 4 most recent quizzes
 # Dependencies:
 # - Curl
 # - JQ
