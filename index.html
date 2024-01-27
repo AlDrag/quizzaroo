@@ -9,12 +9,44 @@
       #quiz-list a {
         display: block;
       }
+
+      #wrapper {
+        max-width: 500px;
+        margin: 0 auto;
+      }
     </style>
 </head>
 <body>
+  <div id="wrapper">
+    <h1>Quizaroo!</h1>
     <div id="quiz-list">
+      <div id="quizzes">
+        <h2>Quizzes</h2>
         <!-- Quiz links will be loaded here -->
+      </div>
+      <div id="three-strikes">
+        <h2>Three Strikes</h2>
+        <!-- ThreeStrikes links will be loaded here -->
+      </div>
+      <div id="hard-words">
+        <h2>Hard Word</h2>
+        <!-- HardWords links will be loaded here -->
+      </div>
     </div>
-    <script src="script.js"></script>
+    <hr>
+    <h2>If Desperate</h2>
+    <ul>
+      <li>Wordless: <a href="https://lessgames.com/wordless">https://lessgames.com/wordless</a></li>
+      <li>Heardle: <a href="https://heardlewordle.io/">https://heardlewordle.io/</a></li>
+      <li>Herald Quizzes: <a href="https://www.nzherald.co.nz/topic/quizzes/">https://www.nzherald.co.nz/topic/quizzes/</a></li>
+    </ul>
+  </div>
+  <script src="script.js"></script>
+  <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script>
+  <script type="module">
+    import { rainbowCursor } from "https://unpkg.com/cursor-effects@latest/dist/esm.js";
+  
+    new rainbowCursor();
+  </script>
 </body>
 </html>
