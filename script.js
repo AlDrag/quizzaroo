@@ -46,7 +46,3 @@ function getIframeSrc(htmlContent) {
   const match = regex.exec(htmlContent);
   return match ? match[1] : '';
 }
-
-function parseStuffQuizDateString(dateString) {
-  return new Date(dateString.slice(0, 4), dateString.slice(4, 6) - 1, dateString.slice(6, 8));
-}
