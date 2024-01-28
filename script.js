@@ -15,7 +15,7 @@ async function fetchQuizzes() {
     .catch(() => []);
 
   return stories
-    .sort((a, b) => b.id - a.id)
+    .sort((a, b) => b.datetime_iso8601.localeCompare(a.datetime_iso8601))
     .reduce((acc, story) => {
       const title = story.title.toLowerCase();
       if (title.includes("trivia challenge") && !title.includes("kids")) {
@@ -45,4 +45,8 @@ function getIframeSrc(htmlContent) {
   const regex = /iframe.*src="([^?]+)/;
   const match = regex.exec(htmlContent);
   return match ? match[1] : '';
+}
+
+function parseStuffQuizDateString(dateString) {
+  return new Date(dateString.slice(0, 4), dateString.slice(4, 6) - 1, dateString.slice(6, 8));
 }
