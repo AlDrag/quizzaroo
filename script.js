@@ -15,7 +15,7 @@ async function fetchQuizzes() {
     .catch(() => []);
 
   return stories
-    .sort((a, b) => b.id - a.id)
+    .sort((a, b) => b.datetime_iso8601.localeCompare(a.datetime_iso8601))
     .reduce((acc, story) => {
       const title = story.title.toLowerCase();
       if (title.includes("trivia challenge") && !title.includes("kids")) {
