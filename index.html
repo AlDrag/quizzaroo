@@ -6,6 +6,21 @@
     <title>Quizaroo</title>
 
     <style>
+      * {
+        cursor: url('/nyan/nyan1.svg') 7 4, default;
+        animation: cursor 0.42s linear infinite;
+      }
+      @keyframes cursor {
+        0%    { cursor: url('/nyan/nyan1.svg') 7 4, default; }
+        16.7% { cursor: url('/nyan/nyan2.svg') 7 4, default; }
+        33.4% { cursor: url('/nyan/nyan3.svg') 7 4, default; }
+        50%   { cursor: url('/nyan/nyan4.svg') 7 4, default; }
+        66.7% { cursor: url('/nyan/nyan5.svg') 7 4, default; }
+        83.4% { cursor: url('/nyan/nyan6.svg') 7 4, default; }
+      }
+      a:hover {
+        color: red;
+      }
       #quiz-list a {
         display: block;
       }
