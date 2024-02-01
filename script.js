@@ -35,6 +35,7 @@ function renderQuizLinks(container, quizzes) {
     const iframeSrc = getIframeSrc(quiz.html_assets[0].data_content);
     const quizLink = document.createElement("a");
     quizLink.href = iframeSrc;
+    quizLink.target = "_blank";
     quizLink.textContent = quiz.title;
     list.appendChild(quizLink); 
   }
