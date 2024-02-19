@@ -1,3 +1,3 @@
 # Quizzaroo!
 
-[Quizaroo](https://aldrag.github.io/quizzaroo/)
+[Quizzaroo](https://aldrag.github.io/quizzaroo/)
