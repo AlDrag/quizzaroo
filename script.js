@@ -1,6 +1,18 @@
 const stuffQuizProxiedURL = 'https://corsproxy.io/?' + encodeURIComponent('https://www.stuff.co.nz/_json/national/quizzes?limit=99');
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 const stories = await fetchQuizzes();
+const firebaseConfig = {
+  apiKey: "AIzaSyAoYRHH_PI7IPE9zwDiP4tfeGVwHFNhBUU",
+  authDomain: "quizzaroo-f98dc.firebaseapp.com",
+  projectId: "quizzaroo-f98dc",
+  storageBucket: "quizzaroo-f98dc.appspot.com",
+  messagingSenderId: "728917953883",
+  appId: "1:728917953883:web:66fc2f6eb3cccd7c7cde7e"
+};
+const app = initializeApp(firebaseConfig);
+const database = getFirestore(app);
 
 renderQuizLinks(document.getElementById("three-strikes"), stories.threeStrikes);
 renderQuizLinks(document.getElementById("hard-words"), stories.hardWords);
