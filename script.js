@@ -44,11 +44,16 @@ function renderQuizRow(id, title, link, complete = false, score = 0) {
   const name = /:\s(?<name>(?:Morning|Afternoon)\s[a-z\s]+):/i.exec(title)?.groups?.name;
   const row = document.createElement("tr");
   const td1 = document.createElement("td");
+  const label = document.createElement("label");
+  label.setAttribute("for", id);
   const checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
   checkbox.checked = complete;
-  checkbox.onclick = () => { void markComplete(id, checkbox.checked); };
-  td1.appendChild(checkbox);
+  checkbox.id = id;
+  checkbox.name = id;
+  checkbox.oninput = () => { void markComplete(id, checkbox.checked); };
+  label.appendChild(checkbox);
+  td1.appendChild(label);
   const td2 = document.createElement("td");
   const anchor = document.createElement("a");
   anchor.href = link;

@@ -69,6 +69,23 @@
       input[type="number"] {
         width: 8ch;
       }
+
+      input[type="checkbox"] {
+        opacity: 0;
+      }
+
+      label:has(input[type="checkbox"]) {
+        display: block;
+	      width: 2em;
+	      height: 2em;
+	      margin: -0.5em;
+	      background-image: url(assets/star_outline.svg);
+	      background-position: center;
+	      background-size: contain;
+      }
+      label:has(input[type="checkbox"]:checked) {
+        background-image: url('assets/star_fill.svg');
+      }
     </style>
 </head>
 <body>
