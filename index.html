@@ -49,14 +49,35 @@
         background-color: #eee;
         box-shadow: 0 4px 10px -4px #0128;
       }
+
+      table {
+        width: 100%;
+      }
+      tr {
+        width: 100%;
+        background-color: white;
+      }
+      tr:nth-of-type(2n) {
+        background-color: #f1fbff;
+      }
+      td {
+        padding: 0.5ch;
+      }
+
+      input[type="number"] {
+        width: 8ch;
+      }
     </style>
 </head>
 <body>
   <div id="wrapper">
     <h1>Quizaroo!</h1>
     <div id="quiz-list">
-      <div id="quizzes">
+      <div>
         <h2>Quizzes</h2>
+        <table>
+          <tbody id="quizzes"></tbody>
+        </table>
         <!-- Quiz links will be loaded here -->
       </div>
       <div id="three-strikes">
