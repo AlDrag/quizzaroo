@@ -1,12 +1,10 @@
 const stuffQuizProxiedURL = 'https://corsproxy.io/?' + encodeURIComponent('https://www.stuff.co.nz/_json/national/quizzes?limit=99');
 
-window.onload = async function() {
-  const stories = await fetchQuizzes();
+const stories = await fetchQuizzes();
 
-  renderQuizLinks(document.getElementById("three-strikes"), stories.threeStrikes);
-  renderQuizLinks(document.getElementById("hard-words"), stories.hardWords);
-  renderQuizLinks(document.getElementById("quizzes"), stories.quizzes);
-};
+renderQuizLinks(document.getElementById("three-strikes"), stories.threeStrikes);
+renderQuizLinks(document.getElementById("hard-words"), stories.hardWords);
+renderQuizLinks(document.getElementById("quizzes"), stories.quizzes);
 
 async function fetchQuizzes() {
   const stories = await fetch(stuffQuizProxiedURL)
