@@ -1,33 +1,10 @@
 import { Database } from "./database.js";
 
-const stuffQuizProxiedURL = 'https://corsproxy.io/?' + encodeURIComponent('https://www.stuff.co.nz/_json/national/quizzes?limit=99');
-const stories = await fetchQuizzes();
-
-renderOtherLinks(document.getElementById("three-strikes"), stories.threeStrikes);
-renderOtherLinks(document.getElementById("hard-words"), stories.hardWords);
-Database.onUpdate(() => renderQuizLinks(document.getElementById("quizzes"), stories.quizzes));
-
-
-async function fetchQuizzes() {
-  const stories = await fetch(stuffQuizProxiedURL)
-    .then(response => response.json())
-    .then(response => response.stories)
-    .catch(() => []);
-
-  return stories
-    .sort((a, b) => b.datetime_iso8601.localeCompare(a.datetime_iso8601))
-    .reduce((acc, story) => {
-      const title = story.title.toLowerCase();
-      if (title.includes("trivia challenge") && !title.includes("kids")) {
-        acc.quizzes.push(story);
-      } else if (title.includes("three strikes trivia")) {
-        acc.threeStrikes.push(story);
-      } else if (title.includes("hard word")) {
-        acc.hardWords.push(story);
-      }
-      return acc;
-    }, { quizzes: [], threeStrikes: [], hardWords: [] });
-}
+Database.onUpdate((stories) => {
+  renderQuizLinks(document.getElementById("quizzes"), stories.quizzes)
+  renderOtherLinks(document.getElementById("three-strikes"), stories.threeStrikes);
+  renderOtherLinks(document.getElementById("hard-words"), stories.hardWords);
+});
 
 function renderQuizRow(id, title, link, complete = false, score = 0) {
   const date = /:\s(?<date>[a-z]+\s[0-9]+,\s[0-9]+)/i.exec(title)?.groups?.date;
