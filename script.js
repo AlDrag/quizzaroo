@@ -1,21 +1,11 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { addDoc, collection, getDocs, getFirestore, onSnapshot, query, updateDoc, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { Database } from "./database.js";
 
 const stuffQuizProxiedURL = 'https://corsproxy.io/?' + encodeURIComponent('https://www.stuff.co.nz/_json/national/quizzes?limit=99');
 const stories = await fetchQuizzes();
-const firebaseConfig = {
-  apiKey: "AIzaSyAoYRHH_PI7IPE9zwDiP4tfeGVwHFNhBUU",
-  authDomain: "quizzaroo-f98dc.firebaseapp.com",
-  projectId: "quizzaroo-f98dc",
-  storageBucket: "quizzaroo-f98dc.appspot.com",
-  messagingSenderId: "728917953883",
-  appId: "1:728917953883:web:66fc2f6eb3cccd7c7cde7e"
-};
-const app = initializeApp(firebaseConfig);
-const database = getFirestore(app);
-loadFromStorage();
+
 renderOtherLinks(document.getElementById("three-strikes"), stories.threeStrikes);
 renderOtherLinks(document.getElementById("hard-words"), stories.hardWords);
+Database.onUpdate(() => renderQuizLinks(document.getElementById("quizzes"), stories.quizzes));
 
 
 async function fetchQuizzes() {
@@ -51,7 +41,7 @@ function renderQuizRow(id, title, link, complete = false, score = 0) {
   checkbox.checked = complete;
   checkbox.id = id;
   checkbox.name = id;
-  checkbox.oninput = () => { void markComplete(id, checkbox.checked); };
+  checkbox.oninput = () => { void Database.markQuizComplete(id, checkbox.checked); };
   label.appendChild(checkbox);
   td1.appendChild(label);
   const td2 = document.createElement("td");
@@ -67,7 +57,7 @@ function renderQuizRow(id, title, link, complete = false, score = 0) {
   input.setAttribute("type", "number");
   input.setAttribute("step", "1");
   input.value = score;
-  input.oninput = () => { void setScore(id, parseInt(input.value)); };
+  input.oninput = () => { void Database.setQuizScore(id, parseInt(input.value)); };
   td4.appendChild(input);
   row.appendChild(td1);
   row.appendChild(td2);
@@ -104,38 +94,4 @@ function getIframeSrc(htmlContent) {
   const regex = /iframe.*src="([^?]+)/;
   const match = regex.exec(htmlContent);
   return match ? match[1] : '';
-}
-
-async function loadFromStorage() {
-  onSnapshot(collection(database, "quizzes"), (snapshot) => {
-    snapshot.forEach((doc) => {
-      const data = doc.data();
-      if (!data) return;
-      const quiz = stories.quizzes.find(q => q.id === data.quizId);
-      if (!quiz) return;
-      quiz.complete = data.complete;
-      quiz.score = data.score;
-    });
-    renderQuizLinks(document.getElementById("quizzes"), stories.quizzes);
-  });
-}
-
-async function markComplete(quizId, complete) {
-  const result = await getDocs(query(collection(database, "quizzes"), where('quizId', '==', quizId)));
-  let document = result.docs[0]?.ref;
-  if (result.empty || !document) {
-    document = await addDoc(collection(database, "quizzes"), { complete, score: 0, quizId });
-    return;
-  }
-  await updateDoc(document, { complete });
-}
-
-async function setScore(quizId, score) {
-  const result = await getDocs(query(collection(database, "quizzes"), where('quizId', '==', quizId)));
-  let document = result.docs[0]?.ref;
-  if (result.empty || !document) {
-    document = await addDoc(collection(database, "quizzes"), { complete: false, score, quizId });
-    return;
-  }
-  await updateDoc(document, { score });
 }
