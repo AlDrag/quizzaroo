@@ -15,10 +15,12 @@ export class Database {
     static listeners = [];
 
     static {
+      // Subscribe to database changes.
       onSnapshot(collection(this.database, "quizzes"), (snapshot) => {
         snapshot.forEach((doc) => {
           const data = doc.data();
           if (!data) return;
+          // TODO: Remove this side-effect.
           const quiz = stories.quizzes.find(q => q.id === data.quizId);
           if (!quiz) return;
           quiz.complete = data.complete;
@@ -28,10 +30,19 @@ export class Database {
       });
     }
 
+    /**
+     * Register a function to call when updates are received from the database.
+     * @param {() => void} callback
+     */
     static onUpdate(callback) {
       this.listeners.push(callback);
     }
 
+    /**
+     * Mark a quiz as complete/incomplete.
+     * @param {string} quizId The ID of the quiz.
+     * @param {boolean} complete Set `true` to mark as complete, `false` to mark as incomplete.
+     */
     static async markQuizComplete(quizId, complete) {
       const result = await getDocs(query(collection(this.database, "quizzes"), where('quizId', '==', quizId)));
       let document = result.docs[0]?.ref;
@@ -41,7 +52,12 @@ export class Database {
       }
       await updateDoc(document, { complete });
     }
-    
+
+    /**
+     * Set a quiz's score.
+     * @param {string} quizId The ID of the quiz.
+     * @param {number} score The score to set.
+     */
     static async setQuizScore(quizId, score) {
       const result = await getDocs(query(collection(this.database, "quizzes"), where('quizId', '==', quizId)));
       let document = result.docs[0]?.ref;
