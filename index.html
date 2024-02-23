@@ -3,60 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quizaroo</title>
-
-    <style>
-      * {
-        cursor: url('nyan/nyan1.svg') 7 4, default;
-        animation: cursor 0.42s linear infinite;
-      }
-      @keyframes cursor {
-        0%    { cursor: url('nyan/nyan1.svg') 7 4, default; }
-        16.7% { cursor: url('nyan/nyan2.svg') 7 4, default; }
-        33.4% { cursor: url('nyan/nyan3.svg') 7 4, default; }
-        50%   { cursor: url('nyan/nyan4.svg') 7 4, default; }
-        66.7% { cursor: url('nyan/nyan5.svg') 7 4, default; }
-        83.4% { cursor: url('nyan/nyan6.svg') 7 4, default; }
-      }
-      html {
-        display: flex;
-        height: 100%;
-      }
-      body {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        background-image: url('giraffe.gif');
-        background-size: cover;
-      }
-      a:hover {
-        color: red;
-      }
-      #quiz-list a {
-        display: block;
-      }
-
-      h1 {
-        margin-top: 0;
-      }
-
-      #wrapper {
-        max-width: 500px;
-        margin: auto;
-        padding: 32px;
-        border-radius: 8px;
-        background-color: #eee;
-        box-shadow: 0 4px 10px -4px #0128;
-      }
-    </style>
+    <title>Quizzaroo</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="wrapper">
-    <h1>Quizaroo!</h1>
+    <h1>Quizzaroo!</h1>
     <div id="quiz-list">
-      <div id="quizzes">
+      <div>
         <h2>Quizzes</h2>
+        <table>
+          <tbody id="quizzes"></tbody>
+        </table>
         <!-- Quiz links will be loaded here -->
       </div>
       <div id="three-strikes">
@@ -76,7 +34,7 @@
       <li>Herald Quizzes: <a href="https://www.nzherald.co.nz/topic/quizzes/">https://www.nzherald.co.nz/topic/quizzes/</a></li>
     </ul>
   </div>
-  <script src="script.js"></script>
+  <script src="script.js" type="module" defer></script>
   <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script>
   <script type="module">
     import { rainbowCursor } from "https://unpkg.com/cursor-effects@latest/dist/esm.js";
