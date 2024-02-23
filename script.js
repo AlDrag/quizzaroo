@@ -64,6 +64,7 @@ function renderOtherLinks(container, quizzes) {
     quizLink.textContent = quiz.title;
     list.appendChild(quizLink); 
   }
+  container.innerHTML = '';
   container.append(list);
 }
 
