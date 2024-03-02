@@ -2,7 +2,16 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebas
 import { addDoc, collection, getDocs, getFirestore, query, updateDoc, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 const stuffQuizProxiedURL = 'https://corsproxy.io/?' + encodeURIComponent('https://www.stuff.co.nz/_json/national/quizzes?limit=99&nocache=' + new Date().toDateString());
-const stories = await fetchQuizzes();
+
+const isLocalhost = window.location.hostname === 'localhost';
+const cache = JSON.parse(sessionStorage.getItem('quizzes'));
+const stories = cache && isLocalhost
+  ? cache
+  : await fetchQuizzes();
+
+if (!cache && isLocalhost) {
+  sessionStorage.setItem('quizzes', JSON.stringify(stories));
+}
 
 async function fetchQuizzes() {
   const stories = await fetch(stuffQuizProxiedURL)
@@ -84,4 +93,12 @@ export class Database {
     }
     await updateDoc(document, { score });
   }
+}
+
+function getCache() {
+  return 
+}
+
+function setCache() {
+  sessionStorage.setItem('quizzes', quizzes)
 }
