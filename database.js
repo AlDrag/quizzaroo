@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { addDoc, collection, getDocs, getFirestore, onSnapshot, query, updateDoc, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { addDoc, collection, getDocs, getFirestore, query, updateDoc, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 const stuffQuizProxiedURL = 'https://corsproxy.io/?' + encodeURIComponent('https://www.stuff.co.nz/_json/national/quizzes?limit=99&nocache=' + new Date().toDateString());
 const stories = await fetchQuizzes();
@@ -36,11 +36,12 @@ export class Database {
   };
   static app = initializeApp(this.firebaseConfig);
   static database = getFirestore(this.app);
-  static listeners = [];
 
-  static {
-    // Subscribe to database changes.
-    onSnapshot(collection(this.database, "quizzes"), (snapshot) => {
+  /**
+   * Loads the latest snapshot of the Quiz metadata from firebase.
+   */
+  static load(callback) {
+    getDocs(collection(this.database, "quizzes")).then(snapshot => {
       snapshot.forEach((doc) => {
         const data = doc.data();
         if (!data) return;
@@ -49,16 +50,9 @@ export class Database {
         quiz.complete = data.complete;
         quiz.score = data.score;
       });
-      for (const callback of this.listeners) callback?.(stories);
-    });
-  }
 
-  /**
-   * Register a function to call when updates are received from the database.
-   * @param {(stories) => void} callback
-   */
-  static onUpdate(callback) {
-    this.listeners.push(callback);
+      callback(stories)
+    });
   }
 
   /**

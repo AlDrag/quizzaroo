@@ -1,6 +1,6 @@
 import { Database } from "./database.js";
 
-Database.onUpdate((stories) => {
+Database.load((stories) => {
   renderQuizLinks(document.getElementById("quizzes"), stories.quizzes)
   renderOtherLinks(document.getElementById("three-strikes"), stories.threeStrikes);
   renderOtherLinks(document.getElementById("hard-words"), stories.hardWords);
