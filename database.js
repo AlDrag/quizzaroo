@@ -94,11 +94,3 @@ export class Database {
     await updateDoc(document, { score });
   }
 }
-
-function getCache() {
-  return 
-}
-
-function setCache() {
-  sessionStorage.setItem('quizzes', quizzes)
-}
