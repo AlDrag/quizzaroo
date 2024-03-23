@@ -4,14 +4,6 @@ import { addDoc, collection, getDocs, getFirestore, query, updateDoc, where } fr
 const stuffQuizProxiedURL = 'https://corsproxy.io/?' + encodeURIComponent('https://www.stuff.co.nz/_json/national/quizzes?limit=99&nocache=' + new Date().toDateString());
 
 const isLocalhost = window.location.hostname === 'localhost';
-const cache = JSON.parse(sessionStorage.getItem('quizzes'));
-const stories = cache && isLocalhost
-  ? cache
-  : await fetchQuizzes();
-
-if (!cache && isLocalhost) {
-  sessionStorage.setItem('quizzes', JSON.stringify(stories));
-}
 
 async function fetchQuizzes() {
   const stories = await fetch(stuffQuizProxiedURL)
@@ -45,11 +37,23 @@ export class Database {
   };
   static app = initializeApp(this.firebaseConfig);
   static database = getFirestore(this.app);
+  static stories;
 
   /**
    * Loads the latest snapshot of the Quiz metadata from firebase.
    */
-  static load(callback) {
+  static async load(callback) {
+    const cache = JSON.parse(sessionStorage.getItem('quizzes'));
+    const stories = cache && isLocalhost
+      ? cache
+      : await fetchQuizzes();
+
+    console.log('Stories: ', stories);
+
+    if (!cache && isLocalhost) {
+      sessionStorage.setItem('quizzes', JSON.stringify(stories));
+    }
+
     getDocs(collection(this.database, "quizzes")).then(snapshot => {
       snapshot.forEach((doc) => {
         const data = doc.data();
@@ -71,12 +75,12 @@ export class Database {
    */
   static async markQuizComplete(quizId, complete) {
     const result = await getDocs(query(collection(this.database, "quizzes"), where('quizId', '==', quizId)));
-    let document = result.docs[0]?.ref;
-    if (result.empty || !document) {
-      document = await addDoc(collection(this.database, "quizzes"), { complete, score: 0, quizId });
-      return;
+    if (result.empty) {
+      await addDoc(collection(this.database, "quizzes"), { complete, score: 0, quizId });
+    } else {
+      const document = result.docs[0]?.ref;
+      await updateDoc(document, { complete });
     }
-    await updateDoc(document, { complete });
   }
 
   /**
@@ -86,11 +90,11 @@ export class Database {
    */
   static async setQuizScore(quizId, score) {
     const result = await getDocs(query(collection(this.database, "quizzes"), where('quizId', '==', quizId)));
-    let document = result.docs[0]?.ref;
-    if (result.empty || !document) {
-      document = await addDoc(collection(this.database, "quizzes"), { complete: false, score, quizId });
-      return;
+    if (result.empty) {
+      await addDoc(collection(this.database, "quizzes"), { complete: false, score, quizId });
+    } else {
+      const document = result.docs[0]?.ref;
+      await updateDoc(document, { score });
     }
-    await updateDoc(document, { score });
   }
 }

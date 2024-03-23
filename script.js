@@ -34,7 +34,7 @@ function renderQuizRow(id, title, link, complete = false, score = 0) {
   input.setAttribute("type", "number");
   input.setAttribute("step", "1");
   input.value = score;
-  input.oninput = () => { void Database.setQuizScore(id, parseInt(input.value)); };
+  input.oninput = debounce(() => Database.setQuizScore(id, parseInt(input.value)), 2000);
   td4.appendChild(input);
   row.appendChild(td1);
   row.appendChild(td2);
@@ -72,4 +72,15 @@ function getIframeSrc(htmlContent) {
   const regex = /iframe.*src="([^?]+)/;
   const match = regex.exec(htmlContent);
   return match ? match[1] : '';
+}
+
+function debounce(callback, delay) {
+  let timeoutId;
+  
+  return function(...args) {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      callback(...args);
+    }, delay);
+  };
 }
