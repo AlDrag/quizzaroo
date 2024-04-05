@@ -1,10 +1,29 @@
 import { Database } from "./database.js";
 
 Database.load((stories) => {
+  renderGraphs(stories.quizzes);
   renderQuizLinks(document.getElementById("quizzes"), stories.quizzes)
   renderOtherLinks(document.getElementById("three-strikes"), stories.threeStrikes);
   renderOtherLinks(document.getElementById("hard-words"), stories.hardWords);
 });
+
+function renderGraphs(quizzes) {
+  const filtered = quizzes.filter(quiz => quiz.complete).reverse();
+  new roughViz.Bar({
+    element: '#graphs',
+    data: {
+      values: filtered.map(quiz => quiz.score),
+      labels: filtered.map(quiz => quiz.title),
+    },
+    roughness: 0,
+    margin: {
+      top: 20,
+      bottom: 5,
+      right: 0,
+      left: 20
+    }
+  });
+}
 
 function renderQuizRow(id, title, link, complete = false, score = 0) {
   const date = /:\s(?<date>[a-z]+\s[0-9]+,\s[0-9]+)/i.exec(title)?.groups?.date;

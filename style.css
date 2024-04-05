@@ -78,3 +78,8 @@ label:has(input[type="checkbox"]) {
 label:has(input[type="checkbox"]:checked) {
   background-image: url('assets/star_fill.svg');
 }
+
+#graphs {
+  width: 100%;
+  height: 200px;
+}
