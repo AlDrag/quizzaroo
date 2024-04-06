@@ -5,6 +5,7 @@ Database.load((stories) => {
   renderQuizLinks(document.getElementById("quizzes"), stories.quizzes)
   renderOtherLinks(document.getElementById("three-strikes"), stories.threeStrikes);
   renderOtherLinks(document.getElementById("hard-words"), stories.hardWords);
+  contextMenuMeme(document.getElementsByTagName('a'));
 });
 
 function renderGraphs(quizzes) {
@@ -85,6 +86,39 @@ function renderOtherLinks(container, quizzes) {
   }
   container.innerHTML = '';
   container.append(list);
+}
+
+function contextMenuMeme(tags) {
+  const userAgent = navigator.userAgent;
+  let message = 'Use Ctrl + left-click!!!';
+  if (/Mac|iPhone|iPod|iPad/.test(userAgent)) {
+      message = 'Use ⌘ + left-click!!!';
+  } else if (/Linux/.test(userAgent)) {
+      message = 'Use Super key + left-click';
+  }
+  const warningElement = document.createElement('div');
+  warningElement.textContent = message;
+  warningElement.classList.add('context-menu-warning');
+
+  for (const tag of tags) {
+    tag.addEventListener('contextmenu', (() => rightClickWarning(warningElement)));
+  }
+}
+
+let timeoutRef;
+function rightClickWarning(warningElement) {
+  if (timeoutRef) {
+    clearTimeout(timeoutRef);
+  }
+
+  warningElement.style.left = `${(window.innerWidth) - (1600) / 2}px`;
+  warningElement.style.top = '100px';
+
+  document.body.appendChild(warningElement);
+
+  timeoutRef = setTimeout(() => {
+    document.body.removeChild(warningElement);
+}, 3000);
 }
 
 function getIframeSrc(htmlContent) {
