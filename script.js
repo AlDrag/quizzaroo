@@ -8,6 +8,7 @@ Database.load((stories) => {
   contextMenuMeme(document.getElementsByTagName('a'));
 
   document.getElementById("close").addEventListener('click', () => closeQuiz());
+  document.getElementById("fullscreen").addEventListener('click', () => enterFullScreen());
 });
 
 function renderGraphs(quizzes) {
@@ -28,11 +29,18 @@ function renderGraphs(quizzes) {
   });
 }
 
+function enterFullScreen() {
+  if (!document.fullscreenElement) {
+    const quizViewer = document.getElementById("quiz-viewer");
+    quizViewer.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+}
+
 function openQuiz(link) {
   const quizViewer = document.getElementById("quiz-viewer");
   const quizIframe = quizViewer.querySelector("iframe");
-  quizIframe.setAttribute("sandbox", "allow-forms allow-modals allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox");
-  quizIframe.setAttribute("scrolling", "auto");
   const url = new URL(link);
   const embedURL = 'https://riddle-proxy.viethungax-cloudflare.workers.dev' + url.pathname;
   quizIframe.src = embedURL;
@@ -49,6 +57,7 @@ function closeQuiz() {
   const quizIframe = quizViewer.querySelector("iframe");
   quizIframe.src = "data:text/html, <body style='background: white;display: flex; align-items: center;'><h1 style='text-align: center; width: 100%;'>LOADING...</h1></body>";
   quizViewer.style.display = 'none';
+  document.exitFullscreen();
 }
 
 function renderQuizRow(id, title, link, complete = false, score = 0) {

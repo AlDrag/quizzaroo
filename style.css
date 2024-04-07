@@ -115,13 +115,13 @@ label:has(input[type="checkbox"]:checked) {
 
 #quiz-viewer iframe {
   width: 60%;
-  height: 80%;
+  height: 100%;
   position: absolute;
-  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   display: block;
   border: none;
+  min-width: 600px;
 }
 
 #quiz-viewer #close {
@@ -134,4 +134,18 @@ label:has(input[type="checkbox"]:checked) {
   top: 10%;
   font-size: 25px;
   border-radius: 50%;
+}
+
+#quiz-viewer #fullscreen {
+  position: absolute;
+  border: none;
+  width: 50px;
+  height: 50px;
+  background: 'white';
+  left: 81%;
+  top: calc(10% + 60px);
+  font-size: 25px;
+  border-radius: 50%;
+  transform: rotate(-45deg);
+  padding-bottom: 5px;
 }
