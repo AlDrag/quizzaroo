@@ -6,6 +6,9 @@ Database.load((stories) => {
   renderOtherLinks(document.getElementById("three-strikes"), stories.threeStrikes);
   renderOtherLinks(document.getElementById("hard-words"), stories.hardWords);
   contextMenuMeme(document.getElementsByTagName('a'));
+
+  document.getElementById("close").addEventListener('click', () => closeQuiz());
+  document.getElementById("fullscreen").addEventListener('click', () => enterFullScreen());
 });
 
 function renderGraphs(quizzes) {
@@ -24,6 +27,37 @@ function renderGraphs(quizzes) {
       left: 20
     }
   });
+}
+
+function enterFullScreen() {
+  if (!document.fullscreenElement) {
+    const quizViewer = document.getElementById("quiz-viewer");
+    quizViewer.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+}
+
+function openQuiz(link) {
+  const quizViewer = document.getElementById("quiz-viewer");
+  const quizIframe = quizViewer.querySelector("iframe");
+  const url = new URL(link);
+  const embedURL = 'https://riddle-proxy.viethungax-cloudflare.workers.dev' + url.pathname;
+  quizIframe.src = embedURL;
+  quizViewer.style.display = 'block';
+  quizIframe.onload = () => {
+    // Important: This is to override the `document.referrer` property that get sent to riddle.com for access token.
+    quizIframe.contentWindow.postMessage({ script: `Object.defineProperty(document, "referrer", {get : () => 'http://www.riddle.com'});` }, "*");
+    quizIframe.contentWindow.postMessage({ script: `document.querySelector('html').style.overflow = 'auto'` }, "*");
+  };
+}
+
+function closeQuiz() {
+  const quizViewer = document.getElementById("quiz-viewer");
+  const quizIframe = quizViewer.querySelector("iframe");
+  quizIframe.src = "data:text/html, <body style='background: white;display: flex; align-items: center;'><h1 style='text-align: center; width: 100%;'>LOADING...</h1></body>";
+  quizViewer.style.display = 'none';
+  document.exitFullscreen();
 }
 
 function renderQuizRow(id, title, link, complete = false, score = 0) {
@@ -46,6 +80,10 @@ function renderQuizRow(id, title, link, complete = false, score = 0) {
   anchor.href = link;
   anchor.target = "_blank";
   anchor.innerText = name;
+  anchor.onclick = (e) => {
+    e.preventDefault();
+    openQuiz(link);
+  };
   td2.appendChild(anchor);
   const td3 = document.createElement("td");
   td3.innerText = date;
@@ -89,13 +127,7 @@ function renderOtherLinks(container, quizzes) {
 }
 
 function contextMenuMeme(tags) {
-  const userAgent = navigator.userAgent;
-  let message = 'Use Ctrl + left-click!!!';
-  if (/Mac|iPhone|iPod|iPad/.test(userAgent)) {
-      message = 'Use ⌘ + left-click!!!';
-  } else if (/Linux/.test(userAgent)) {
-      message = 'Use Super key + left-click';
-  }
+  const message = 'Use left click!!!';
   const warningElement = document.createElement('div');
   warningElement.textContent = message;
   warningElement.classList.add('context-menu-warning');
