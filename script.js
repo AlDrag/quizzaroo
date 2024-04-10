@@ -9,6 +9,16 @@ Database.load((stories) => {
 
   document.getElementById("close").addEventListener('click', () => closeQuiz());
   document.getElementById("fullscreen").addEventListener('click', () => enterFullScreen());
+
+  window.addEventListener('message', message => {
+    if (message.data.type === 'quizFinished') {
+      const input = document.getElementById(message.data.id).querySelector(`input[type='number']`);
+      input.value = message.data.score;
+      input.dispatchEvent(new Event('input', {
+        bubbles: true,
+      }));
+    }
+  });
 });
 
 function renderGraphs(quizzes) {
@@ -38,7 +48,7 @@ function enterFullScreen() {
   }
 }
 
-function openQuiz(link) {
+function openQuiz(id, link) {
   const quizViewer = document.getElementById("quiz-viewer");
   const quizIframe = quizViewer.querySelector("iframe");
   const url = new URL(link);
@@ -49,6 +59,17 @@ function openQuiz(link) {
     // Important: This is to override the `document.referrer` property that get sent to riddle.com for access token.
     quizIframe.contentWindow.postMessage({ script: `Object.defineProperty(document, "referrer", {get : () => 'http://www.riddle.com'});` }, "*");
     quizIframe.contentWindow.postMessage({ script: `document.querySelector('html').style.overflow = 'auto'` }, "*");
+    quizIframe.contentWindow.postMessage({ script: `const id = ${id};new MutationObserver(function (mutations, mutationInstance) {
+      const scoreElement = document.querySelector('.result-score .score');
+      if (scoreElement) {
+        const score = scoreElement.textContent;
+          window.parent.postMessage({type: 'quizFinished', id, score}, '*');
+          mutationInstance.disconnect();
+      }
+    }).observe(document, {
+      childList: true,
+      subtree:   true
+    });` }, "*");
   };
 }
 
@@ -64,14 +85,15 @@ function renderQuizRow(id, title, link, complete = false, score = 0) {
   const date = /:\s(?<date>[a-z]+\s[0-9]+,\s[0-9]+)/i.exec(title)?.groups?.date;
   const name = /:\s(?<name>(?:Morning|Afternoon)\s[a-z\s]+):/i.exec(title)?.groups?.name;
   const row = document.createElement("tr");
+  row.id = id;
   const td1 = document.createElement("td");
   const label = document.createElement("label");
-  label.setAttribute("for", id);
+  label.setAttribute("for", `${id}-done`);
   const checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
   checkbox.checked = complete;
-  checkbox.id = id;
-  checkbox.name = id;
+  checkbox.id = `${id}-done`;
+  checkbox.name = `${id}-done`;
   checkbox.oninput = () => { void Database.markQuizComplete(id, checkbox.checked); };
   label.appendChild(checkbox);
   td1.appendChild(label);
@@ -82,7 +104,7 @@ function renderQuizRow(id, title, link, complete = false, score = 0) {
   anchor.innerText = name;
   anchor.onclick = (e) => {
     e.preventDefault();
-    openQuiz(link);
+    openQuiz(id, link);
   };
   td2.appendChild(anchor);
   const td3 = document.createElement("td");
