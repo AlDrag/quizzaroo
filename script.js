@@ -17,6 +17,11 @@ Database.load((stories) => {
       input.dispatchEvent(new Event('input', {
         bubbles: true,
       }));
+      const checkbox = document.getElementById(message.data.id).querySelector(`input[type='checkbox']`)
+      checkbox.checked = true;
+      checkbox.dispatchEvent(new Event('input', {
+        bubbles: true,
+      }));
     }
   });
 });
