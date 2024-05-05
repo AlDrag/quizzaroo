@@ -9,6 +9,7 @@ Database.load((stories) => {
 
   document.getElementById("close").addEventListener('click', () => closeQuiz());
   document.getElementById("fullscreen").addEventListener('click', () => enterFullScreen());
+  document.getElementById("random").addEventListener('click', () => randomChoice());
 
   window.addEventListener('message', message => {
     if (message.data.type === 'quizFinished') {
@@ -84,6 +85,21 @@ function closeQuiz() {
   quizIframe.src = "data:text/html, <body style='background: white;display: flex; align-items: center;'><h1 style='text-align: center; width: 100%;'>LOADING...</h1></body>";
   quizViewer.style.display = 'none';
   document.exitFullscreen();
+}
+
+function randomChoice() {
+  const quizViewer = document.getElementById("quiz-viewer");
+  const quizIframe = quizViewer.querySelector("iframe");
+  quizIframe.contentWindow.postMessage({ script: `
+    const choices = document.querySelectorAll('.choice');
+    if (choices) {
+      choices.forEach(choice => choice.style.background = '');
+
+      const randomIndex = Math.floor(Math.random() * choices.length);
+      const choice = choices[randomIndex];
+      choice.style.background = 'purple';
+    }
+  ` }, "*");
 }
 
 function renderQuizRow(id, title, link, complete = false, score = 0) {
