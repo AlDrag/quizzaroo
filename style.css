@@ -149,3 +149,16 @@ label:has(input[type="checkbox"]:checked) {
   transform: rotate(-45deg);
   padding-bottom: 5px;
 }
+
+#quiz-viewer #random {
+  position: absolute;
+  border: none;
+  width: 50px;
+  height: 50px;
+  background: 'white';
+  left: 81%;
+  top: calc(10% + 120px);
+  font-size: 25px;
+  border-radius: 50%;
+  padding-bottom: 5px;
+}
