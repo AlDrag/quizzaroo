@@ -20,7 +20,9 @@ body {
   height: 100%;
   margin: 0;
   font-family: sans-serif;
-  background-image: url('assets/giraffe.gif');
+  background-image:
+    linear-gradient(120deg, #f002, #ffa50033, #ff03, #0f02, #0ff2, #00f2, #ee82ee22),
+    url('assets/giraffe.gif');
   background-size: cover;
 }
 a:hover {
