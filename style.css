@@ -24,6 +24,7 @@ body {
     linear-gradient(120deg, #f002, #ffa50033, #ff03, #0f02, #0ff2, #00f2, #ee82ee22),
     url('assets/giraffe.gif');
   background-size: cover;
+  background-attachment: fixed;
 }
 a:hover {
   color: red;
