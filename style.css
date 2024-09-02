@@ -2,18 +2,38 @@
   cursor: url('nyan/nyan1.svg') 7 4, default;
   animation: cursor 0.42s linear infinite;
 }
+
 @keyframes cursor {
-  0%    { cursor: url('nyan/nyan1.svg') 7 4, default; }
-  16.7% { cursor: url('nyan/nyan2.svg') 7 4, default; }
-  33.4% { cursor: url('nyan/nyan3.svg') 7 4, default; }
-  50%   { cursor: url('nyan/nyan4.svg') 7 4, default; }
-  66.7% { cursor: url('nyan/nyan5.svg') 7 4, default; }
-  83.4% { cursor: url('nyan/nyan6.svg') 7 4, default; }
+  0% {
+    cursor: url('nyan/nyan1.svg') 7 4, default;
+  }
+
+  16.7% {
+    cursor: url('nyan/nyan2.svg') 7 4, default;
+  }
+
+  33.4% {
+    cursor: url('nyan/nyan3.svg') 7 4, default;
+  }
+
+  50% {
+    cursor: url('nyan/nyan4.svg') 7 4, default;
+  }
+
+  66.7% {
+    cursor: url('nyan/nyan5.svg') 7 4, default;
+  }
+
+  83.4% {
+    cursor: url('nyan/nyan6.svg') 7 4, default;
+  }
 }
+
 html {
   display: flex;
   height: 100%;
 }
+
 body {
   display: flex;
   width: 100%;
@@ -24,9 +44,11 @@ body {
     linear-gradient(120deg, #f002, #ffa50033, #ff03, #0f02, #0ff2, #00f2, #ee82ee22),
     url('assets/giraffe.gif');
 }
+
 a:hover {
   color: red;
 }
+
 #quiz-list a {
   display: block;
 }
@@ -48,13 +70,16 @@ h1 {
 table {
   width: 100%;
 }
+
 tr {
   width: 100%;
   background-color: white;
 }
+
 tr:nth-of-type(2n) {
   background-color: #f1fbff;
 }
+
 td {
   padding: 0.5ch;
 }
@@ -76,6 +101,7 @@ label:has(input[type="checkbox"]) {
   background-position: center;
   background-size: contain;
 }
+
 label:has(input[type="checkbox"]:checked) {
   background-image: url('assets/star_fill.svg');
 }
@@ -86,11 +112,25 @@ label:has(input[type="checkbox"]:checked) {
 }
 
 @keyframes shake {
-  0% { transform: rotate(-1deg); }
-  25% { transform: rotate(1deg); }
-  50% { transform: rotate(-1deg); }
-  75% { transform: rotate(1deg); }
-  100% { transform: rotate(-1deg); }
+  0% {
+    transform: rotate(-1deg);
+  }
+
+  25% {
+    transform: rotate(1deg);
+  }
+
+  50% {
+    transform: rotate(-1deg);
+  }
+
+  75% {
+    transform: rotate(1deg);
+  }
+
+  100% {
+    transform: rotate(-1deg);
+  }
 }
 
 .context-menu-warning {
@@ -160,6 +200,19 @@ label:has(input[type="checkbox"]:checked) {
   left: 81%;
   top: calc(10% + 120px);
   font-size: 25px;
+  border-radius: 50%;
+  padding-bottom: 5px;
+}
+
+#quiz-viewer #fiftyFifty {
+  position: absolute;
+  border: none;
+  width: 50px;
+  height: 50px;
+  background: 'white';
+  left: 81%;
+  top: calc(10% + 180px);
+  font-size: 12px;
   border-radius: 50%;
   padding-bottom: 5px;
 }

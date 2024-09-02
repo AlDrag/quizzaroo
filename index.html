@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quizzaroo</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quizzaroo</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div id="wrapper">
     <h1>Quizzaroo!</h1>
@@ -33,25 +35,32 @@
       <li>Betweenle: <a href="https://betweenle.com/" target="_blank" rel="noreferrer">https://betweenle.com/</a></li>
       <li>Conexo: <a href="https://conexo.ws/" target="_blank" rel="noreferrer">https://conexo.ws/</a></li>
       <li>Contexto: <a href="https://contexto.me/" target="_blank" rel="noreferrer">https://contexto.me/</a></li>
-      <li>Pixletters: <a href="https://pixletters.com/" target="_blank" rel="noreferrer">https://pixletters.com/</a></li>
-      <li>Wordless: <a href="https://lessgames.com/wordless" target="_blank" rel="noreferrer">https://lessgames.com/wordless</a></li>
-      <li>Heardle: <a href="https://heardlewordle.io/" target="_blank" rel="noreferrer">https://heardlewordle.io/</a></li>
-      <li>Herald Quizzes: <a href="https://www.nzherald.co.nz/topic/quizzes/" target="_blank" rel="noreferrer">https://www.nzherald.co.nz/topic/quizzes/</a></li>
+      <li>Pixletters: <a href="https://pixletters.com/" target="_blank" rel="noreferrer">https://pixletters.com/</a>
+      </li>
+      <li>Wordless: <a href="https://lessgames.com/wordless" target="_blank"
+          rel="noreferrer">https://lessgames.com/wordless</a></li>
+      <li>Heardle: <a href="https://heardlewordle.io/" target="_blank" rel="noreferrer">https://heardlewordle.io/</a>
+      </li>
+      <li>Herald Quizzes: <a href="https://www.nzherald.co.nz/topic/quizzes/" target="_blank"
+          rel="noreferrer">https://www.nzherald.co.nz/topic/quizzes/</a></li>
     </ul>
   </div>
   <div id="quiz-viewer">
-    <iframe scrolling="auto" src="data:text/html, <body style='background: white;display: flex; align-items: center;'><h1 style='text-align: center; width: 100%;'>LOADING...</h1></body>"></iframe>
+    <iframe scrolling="auto"
+      src="data:text/html, <body style='background: white;display: flex; align-items: center;'><h1 style='text-align: center; width: 100%;'>LOADING...</h1></body>"></iframe>
     <button id="close">&times;</button>
     <button id="fullscreen">&harr;</button>
     <button id="random">&#9860;</button>
+    <button id="fiftyFifty">50:50</button>
   </div>
   <script src="script.js" type="module" defer></script>
   <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script>
   <script src="https://unpkg.com/rough-viz@2.0.5"></script>
   <script type="module">
     import { rainbowCursor } from "https://unpkg.com/cursor-effects@latest/dist/esm.js";
-  
+
     new rainbowCursor();
   </script>
 </body>
+
 </html>
