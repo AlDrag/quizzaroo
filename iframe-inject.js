@@ -14,8 +14,8 @@ new MutationObserver(function (_, mutationInstance) {
     const scoreElement = document.querySelector('.result-score .score');
     if (scoreElement) {
         const score = scoreElement.textContent;
-        const quizID = window.quizID;
-        window.parent.postMessage({ type: 'quizFinished', quizID, score }, '*');
+        const id = window.quizID;
+        window.parent.postMessage({ type: 'quizFinished', id, score }, '*');
         mutationInstance.disconnect();
     }
 }).observe(document, {

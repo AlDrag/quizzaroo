@@ -69,7 +69,7 @@ function openQuiz(id, link) {
   quizIframe.src = embedURL;
   quizViewer.style.display = 'block';
   quizIframe.onload = () => {
-    quizIframe.contentWindow.postMessage({ script: `window.quizID=${id}` }, "*");
+    quizIframe.contentWindow.postMessage({ script: `window.quizID="${id}"` }, "*");
     quizIframe.contentWindow.postMessage({ script: iframeInject }, "*");
   };
 }
