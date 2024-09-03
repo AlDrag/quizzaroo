@@ -1,5 +1,11 @@
 import { Database } from "./database.js";
 
+let iframeInject;
+
+fetch("iframe-inject.js")
+  .then(response => response.text())
+  .then(response => iframeInject = response);
+
 Database.load((stories) => {
   renderGraphs(stories.quizzes);
   renderQuizLinks(document.getElementById("quizzes"), stories.quizzes)
@@ -10,6 +16,7 @@ Database.load((stories) => {
   document.getElementById("close").addEventListener('click', () => closeQuiz());
   document.getElementById("fullscreen").addEventListener('click', () => enterFullScreen());
   document.getElementById("random").addEventListener('click', () => randomChoice());
+  document.getElementById("fiftyFifty").addEventListener('click', () => fiftyFifty());
 
   window.addEventListener('message', message => {
     if (message.data.type === 'quizFinished') {
@@ -62,20 +69,8 @@ function openQuiz(id, link) {
   quizIframe.src = embedURL;
   quizViewer.style.display = 'block';
   quizIframe.onload = () => {
-    // Important: This is to override the `document.referrer` property that get sent to riddle.com for access token.
-    quizIframe.contentWindow.postMessage({ script: `Object.defineProperty(document, "referrer", {get : () => 'http://www.riddle.com'});` }, "*");
-    quizIframe.contentWindow.postMessage({ script: `document.querySelector('html').style.overflow = 'auto'` }, "*");
-    quizIframe.contentWindow.postMessage({ script: `const id = ${id};new MutationObserver(function (mutations, mutationInstance) {
-      const scoreElement = document.querySelector('.result-score .score');
-      if (scoreElement) {
-        const score = scoreElement.textContent;
-          window.parent.postMessage({type: 'quizFinished', id, score}, '*');
-          mutationInstance.disconnect();
-      }
-    }).observe(document, {
-      childList: true,
-      subtree:   true
-    });` }, "*");
+    quizIframe.contentWindow.postMessage({ script: `window.quizID=${id}` }, "*");
+    quizIframe.contentWindow.postMessage({ script: iframeInject }, "*");
   };
 }
 
@@ -90,16 +85,13 @@ function closeQuiz() {
 function randomChoice() {
   const quizViewer = document.getElementById("quiz-viewer");
   const quizIframe = quizViewer.querySelector("iframe");
-  quizIframe.contentWindow.postMessage({ script: `
-    const choices = document.querySelectorAll('.choice');
-    if (choices) {
-      choices.forEach(choice => choice.style.background = '');
+  quizIframe.contentWindow.postMessage({ script: `randomChoice()` }, "*");
+}
 
-      const randomIndex = Math.floor(Math.random() * choices.length);
-      const choice = choices[randomIndex];
-      choice.style.background = 'purple';
-    }
-  ` }, "*");
+function fiftyFifty() {
+  const quizViewer = document.getElementById("quiz-viewer");
+  const quizIframe = quizViewer.querySelector("iframe");
+  quizIframe.contentWindow.postMessage({ script: `fiftyFifty()` }, "*");
 }
 
 function renderQuizRow(id, title, link, complete = false, score = 0) {
@@ -163,7 +155,7 @@ function renderOtherLinks(container, quizzes) {
     quizLink.href = iframeSrc;
     quizLink.target = "_blank";
     quizLink.textContent = quiz.title;
-    list.appendChild(quizLink); 
+    list.appendChild(quizLink);
   }
   container.innerHTML = '';
   container.append(list);
@@ -193,7 +185,7 @@ function rightClickWarning(warningElement) {
 
   timeoutRef = setTimeout(() => {
     document.body.removeChild(warningElement);
-}, 3000);
+  }, 3000);
 }
 
 function getIframeSrc(htmlContent) {
@@ -204,8 +196,8 @@ function getIframeSrc(htmlContent) {
 
 function debounce(callback, delay) {
   let timeoutId;
-  
-  return function(...args) {
+
+  return function (...args) {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
       callback(...args);
