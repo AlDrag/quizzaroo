@@ -7,6 +7,7 @@ fetch("iframe-inject.js")
   .then(response => iframeInject = response);
 
 Database.load((stories) => {
+  console.log(stories)
   renderGraphs(stories.quizzes);
   renderQuizLinks(document.getElementById("quizzes"), stories.quizzes)
   renderOtherLinks(document.getElementById("three-strikes"), stories.threeStrikes);
@@ -95,8 +96,8 @@ function fiftyFifty() {
 }
 
 function renderQuizRow(id, title, link, complete = false, score = 0) {
-  const date = /:\s(?<date>[a-z]+\s[0-9]+,\s[0-9]+)/i.exec(title)?.groups?.date;
-  const name = /:\s(?<name>(?:Morning|Afternoon)\s[a-z\s]+):/i.exec(title)?.groups?.name;
+  const date = /:?\s(?<date>[a-z]+\s[0-9]+,\s[0-9]+)/i.exec(title)?.groups?.date;
+  const name = /:\s(?<name>(?:Morning|Afternoon)\s[a-z\s]+):?/i.exec(title.replace(date, ''))?.groups?.name;
   const row = document.createElement("tr");
   row.id = id;
   const td1 = document.createElement("td");
