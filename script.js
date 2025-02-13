@@ -7,7 +7,6 @@ fetch("iframe-inject.js")
   .then(response => iframeInject = response);
 
 Database.load((stories) => {
-  console.log(stories)
   renderGraphs(stories.quizzes);
   renderQuizLinks(document.getElementById("quizzes"), stories.quizzes)
   renderOtherLinks(document.getElementById("three-strikes"), stories.threeStrikes);
@@ -93,6 +92,7 @@ function fiftyFifty() {
   const quizViewer = document.getElementById("quiz-viewer");
   const quizIframe = quizViewer.querySelector("iframe");
   quizIframe.contentWindow.postMessage({ script: `fiftyFifty()` }, "*");
+  document.getElementById("fiftyFifty").style.opacity = 0;
 }
 
 function renderQuizRow(id, title, link, complete = false, score = 0) {
