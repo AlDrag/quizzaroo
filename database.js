@@ -1,7 +1,7 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { addDoc, collection, getDocs, getFirestore, query, updateDoc, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-const stuffQuizProxiedURL = 'https://corsproxy.io/?' + encodeURIComponent('https://www.stuff.co.nz/_json/national/quizzes?limit=50&nocache=' + new Date().toDateString());
+const stuffQuizProxiedURL = 'https://riddle-proxy.viethungax-cloudflare.workers.dev/all-of-them?limit=50';
 
 const isLocalhost = window.location.hostname === 'localhost';
 
