@@ -23,6 +23,10 @@ new MutationObserver(function (_, mutationInstance) {
     subtree: true
 });
 
+// Remove Google Ads.
+const googleAdElement = document.querySelector('.ad.ad--bottom');
+googleAdElement.remove();
+
 const obtainWSAccessToken = async () => {
     const riddleID = window.riddleID;
     const contentVersion = window.contentVersion;
