@@ -43,19 +43,17 @@ export class Database {
    * Loads the latest snapshot of the Quiz metadata from firebase.
    */
   static async load(callback) {
-    const cache = JSON.parse(sessionStorage.getItem('quizzes'));
+    const cache = JSON.parse(sessionStorage.getItem('stories-cache'));
     const stories = cache && isLocalhost
       ? cache
       : await fetchQuizzes();
-
-    console.log('Stories: ', stories);
 
     if (cache) {
       document.querySelector('#cache-use-notify').showPopover();
     }
 
-    if (!cache && stories.length && isLocalhost) {
-      sessionStorage.setItem('quizzes', JSON.stringify(stories));
+    if (!cache && stories.quizzes.length && isLocalhost) {
+      sessionStorage.setItem('stories-cache', JSON.stringify(stories));
     }
 
     getDocs(collection(this.database, "quizzes")).then(snapshot => {
