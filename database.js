@@ -50,7 +50,11 @@ export class Database {
 
     console.log('Stories: ', stories);
 
-    if (!cache && isLocalhost) {
+    if (cache) {
+      document.querySelector('#cache-use-notify').showPopover();
+    }
+
+    if (!cache && stories.length && isLocalhost) {
       sessionStorage.setItem('quizzes', JSON.stringify(stories));
     }
 
