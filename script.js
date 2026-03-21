@@ -9,10 +9,6 @@ fetch("iframe-inject.js")
 Database.load((stories) => {
   renderGraphs(stories.quizzes);
   renderQuizLinks(document.getElementById("quizzes"), stories.quizzes);
-  renderOtherLinks(
-    document.getElementById("three-strikes"),
-    stories.threeStrikes,
-  );
   renderOtherLinks(document.getElementById("hard-words"), stories.hardWords);
   contextMenuMeme(document.getElementsByTagName("a"));
 
