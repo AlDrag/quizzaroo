@@ -92,6 +92,8 @@ function openQuiz(id, link) {
       "*",
     );
     quizIframe.contentWindow.postMessage({ script: iframeInject }, "*");
+    // FiftyFifty may have been hidden last quiz session.
+    document.getElementById("fiftyFifty").style.display = 'block';
   };
 }
 
@@ -116,7 +118,7 @@ function fiftyFifty() {
   const quizViewer = document.getElementById("quiz-viewer");
   const quizIframe = quizViewer.querySelector("iframe");
   quizIframe.contentWindow.postMessage({ script: `fiftyFifty()` }, "*");
-  document.getElementById("fiftyFifty").style.opacity = 0;
+  document.getElementById("fiftyFifty").style.display = 'none';
 }
 
 function renderQuizRow(id, title, link, complete = false, score = 0) {
