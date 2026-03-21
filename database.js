@@ -17,8 +17,6 @@ async function fetchQuizzes() {
       const title = story.title.toLowerCase();
       if (title.includes("trivia challenge") && !title.includes("kids")) {
         acc.quizzes.push(story);
-      } else if (title.includes("three strikes trivia")) {
-        acc.threeStrikes.push(story);
       } else if (title.includes("hard word")) {
         acc.hardWords.push(story);
       }
@@ -56,7 +54,9 @@ export class Database {
       sessionStorage.setItem('stories-cache', JSON.stringify(stories));
     }
 
-    getDocs(collection(this.database, "quizzes")).then(snapshot => {
+    const collectionRef = collection(this.database, "quizzes");
+    const limitedQuery = query(collectionRef, where('quizId', 'in', stories.quizzes.map(q => q.id)));
+    getDocs(limitedQuery).then(snapshot => {
       snapshot.forEach((doc) => {
         const data = doc.data();
         if (!data) return;
