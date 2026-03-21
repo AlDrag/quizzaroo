@@ -101,7 +101,9 @@ function closeQuiz() {
   quizIframe.src =
     "data:text/html, <body style='background: white;display: flex; align-items: center;'><h1 style='text-align: center; width: 100%;'>LOADING...</h1></body>";
   quizViewer.style.display = "none";
-  document.exitFullscreen();
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  }
 }
 
 function randomChoice() {
