@@ -27,6 +27,15 @@ new MutationObserver(function (_, mutationInstance) {
 const googleAdElement = document.querySelector('.ad.ad--bottom');
 googleAdElement.remove();
 
+// Technically this is a leaking event listener, as it isn't cleaned up. But it's in an iframe, so it doesn't matter (not our origin, it'll get closed).
+document.addEventListener("keydown", keydownHandler, false);
+
+function keydownHandler(event) {
+    if (event.key === "Escape") {
+        window.parent.postMessage({ type: 'quizClose' }, '*');
+    }
+}
+
 const obtainWSAccessToken = async () => {
     const riddleID = window.riddleID;
     const contentVersion = window.contentVersion;

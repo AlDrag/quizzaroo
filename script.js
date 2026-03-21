@@ -24,25 +24,30 @@ Database.load((stories) => {
     .addEventListener("click", () => fiftyFifty());
 
   window.addEventListener("message", (message) => {
-    if (message.data.type === "quizFinished") {
-      const input = document
-        .getElementById(message.data.id)
-        .querySelector(`input[type='number']`);
-      input.value = message.data.score;
-      input.dispatchEvent(
-        new Event("input", {
-          bubbles: true,
-        }),
-      );
-      const checkbox = document
-        .getElementById(message.data.id)
-        .querySelector(`input[type='checkbox']`);
-      checkbox.checked = true;
-      checkbox.dispatchEvent(
-        new Event("input", {
-          bubbles: true,
-        }),
-      );
+    switch(message.data.type) {
+      case "quizFinished": {
+        const input = document
+          .getElementById(message.data.id)
+          .querySelector(`input[type='number']`);
+        input.value = message.data.score;
+        input.dispatchEvent(
+          new Event("input", {
+            bubbles: true,
+          }),
+        );
+        const checkbox = document
+          .getElementById(message.data.id)
+          .querySelector(`input[type='checkbox']`);
+        checkbox.checked = true;
+        checkbox.dispatchEvent(
+          new Event("input", {
+            bubbles: true,
+          }),
+        );
+      }
+      case "quizClose": {
+        closeQuiz();
+      }
     }
   });
 });
@@ -83,6 +88,7 @@ function openQuiz(id, link) {
   quizIframe.src = embedURL;
   quizViewer.style.display = "block";
   quizIframe.onload = () => {
+    quizIframe.contentWindow.focus();
     quizIframe.contentWindow.postMessage(
       { script: `window.quizID="${id}"` },
       "*",
