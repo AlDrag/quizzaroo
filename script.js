@@ -44,6 +44,7 @@ Database.load((stories) => {
             bubbles: true,
           }),
         );
+        break;
       }
       case "quizClose": {
         closeQuiz();
