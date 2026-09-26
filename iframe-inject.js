@@ -25,7 +25,7 @@ new MutationObserver(function (_, mutationInstance) {
 
 // Remove Google Ads.
 const googleAdElement = document.querySelector('.ad.ad--bottom');
-googleAdElement.remove();
+googleAdElement?.remove();
 
 // Technically this is a leaking event listener, as it isn't cleaned up. But it's in an iframe, so it doesn't matter (not our origin, it'll get closed).
 document.addEventListener("keydown", keydownHandler, false);
