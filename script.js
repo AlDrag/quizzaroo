@@ -10,6 +10,7 @@ Database.load((stories) => {
   renderGraphs(stories.quizzes);
   renderQuizLinks(document.getElementById("quizzes"), stories.quizzes);
   renderOtherLinks(document.getElementById("hard-words"), stories.hardWords);
+  renderOtherLinks(document.getElementById("hard-bird"), stories.hardBirds);
   contextMenuMeme(document.getElementsByTagName("a"));
 
   document.getElementById("close").addEventListener("click", () => closeQuiz());
@@ -203,6 +204,7 @@ function renderOtherLinks(container, quizzes) {
   }
   container.innerHTML = "";
   container.append(list);
+  container.closest("section").hidden = quizzes.length === 0;
 }
 
 function contextMenuMeme(tags) {

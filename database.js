@@ -21,9 +21,11 @@ async function fetchQuizzes() {
         acc.quizzes.push(story);
       } else if (title.includes("hard word")) {
         acc.hardWords.push(story);
+      } else if (title.includes("hard bird")) {
+        acc.hardBirds.push(story);
       }
       return acc;
-    }, { quizzes: [], threeStrikes: [], hardWords: [] });
+    }, { quizzes: [], threeStrikes: [], hardWords: [], hardBirds: [] });
 }
 
 export class Database {
