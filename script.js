@@ -177,7 +177,7 @@ function renderQuizRow(id, title, link, complete = false, score = 0) {
 function renderQuizLinks(container, quizzes) {
   const list = document.createDocumentFragment();
   for (const quiz of quizzes) {
-    const iframeSrc = getIframeSrc(quiz.html_assets[0].data_content);
+    const iframeSrc = quiz.embed;
     const quizLink = renderQuizRow(
       quiz.id,
       quiz.title,
@@ -194,7 +194,7 @@ function renderQuizLinks(container, quizzes) {
 function renderOtherLinks(container, quizzes) {
   const list = document.createDocumentFragment();
   for (const quiz of quizzes) {
-    const iframeSrc = getIframeSrc(quiz.html_assets[0].data_content);
+    const iframeSrc = quiz.embed;
     const quizLink = document.createElement("a");
     quizLink.href = iframeSrc;
     quizLink.target = "_blank";
@@ -232,12 +232,6 @@ function rightClickWarning(warningElement) {
   timeoutRef = setTimeout(() => {
     document.body.removeChild(warningElement);
   }, 3000);
-}
-
-function getIframeSrc(htmlContent) {
-  const regex = /iframe.*src="([^?]+)/;
-  const match = regex.exec(htmlContent);
-  return match ? match[1] : "";
 }
 
 function debounce(callback, delay) {

@@ -1,12 +1,14 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { addDoc, collection, getDocs, getFirestore, query, updateDoc, where } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-const stuffQuizProxiedURL = 'https://riddle-proxy.viethungax-cloudflare.workers.dev/all-of-them?limit=50';
+// Refreshed by .github/workflows/update-quizzes.yml. Stuff blocks the proxy's
+// Cloudflare egress, so the quiz list is scraped on a GitHub runner instead.
+const stuffQuizURL = './quizzes.json';
 
 const isLocalhost = window.location.hostname === 'localhost';
 
 async function fetchQuizzes() {
-  const stories = await fetch(stuffQuizProxiedURL)
+  const stories = await fetch(stuffQuizURL)
     .then(response => response.json())
     .then(response => response.stories)
     .catch(() => []);
