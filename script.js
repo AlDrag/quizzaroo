@@ -23,6 +23,9 @@ Database.load((stories) => {
   document
     .getElementById("fiftyFifty")
     .addEventListener("click", () => fiftyFifty());
+  document
+    .getElementById("montyHall")
+    .addEventListener("click", () => montyHall());
 
   window.addEventListener("message", (message) => {
     switch(message.data.type) {
@@ -49,6 +52,12 @@ Database.load((stories) => {
       }
       case "quizClose": {
         closeQuiz();
+        break;
+      }
+      case "montyHallAborted": {
+        // Monty Hall couldn't run, so the lifeline hasn't been spent.
+        document.getElementById("montyHall").style.display = "block";
+        break;
       }
     }
   });
@@ -96,8 +105,9 @@ function openQuiz(id, link) {
       "*",
     );
     quizIframe.contentWindow.postMessage({ script: iframeInject }, "*");
-    // FiftyFifty may have been hidden last quiz session.
+    // The lifelines may have been hidden last quiz session.
     document.getElementById("fiftyFifty").style.display = 'block';
+    document.getElementById("montyHall").style.display = 'block';
   };
 }
 
@@ -123,6 +133,13 @@ function fiftyFifty() {
   const quizIframe = quizViewer.querySelector("iframe");
   quizIframe.contentWindow.postMessage({ script: `fiftyFifty()` }, "*");
   document.getElementById("fiftyFifty").style.display = 'none';
+}
+
+function montyHall() {
+  const quizViewer = document.getElementById("quiz-viewer");
+  const quizIframe = quizViewer.querySelector("iframe");
+  quizIframe.contentWindow.postMessage({ script: `montyHall()` }, "*");
+  document.getElementById("montyHall").style.display = 'none';
 }
 
 function renderQuizRow(id, title, link, complete = false, score = 0) {
