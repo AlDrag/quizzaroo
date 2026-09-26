@@ -1,6 +1,12 @@
 {
   "stories": [
     {
+      "id": "361025773",
+      "title": "Stuff Quiz: The Really Hard Word: September 26, 2026",
+      "datetime_iso8601": "20260926T150000+1200",
+      "embed": "https://www.riddle.com/embed/a/lQgzD3tj"
+    },
+    {
       "id": "361032880",
       "title": "Stuff quiz: Weekender trivia challenge: September 26, 2026",
       "datetime_iso8601": "20260926T040000+1200",
@@ -115,16 +121,16 @@
       "embed": "https://www.riddle.com/embed/a/pTO2L9Xt"
     },
     {
-      "id": "361035227",
-      "title": "Stuff quiz: The week that was news quiz for September 20, 2026",
-      "datetime_iso8601": "20260920T040000+1200",
-      "embed": "https://www.riddle.com/embed/a/KHUQFc62"
-    },
-    {
       "id": "361026933",
       "title": "Stuff Quiz: He Kupu Nanu: September 20, 2026",
       "datetime_iso8601": "20260920T040000+1200",
       "embed": "https://www.riddle.com/embed/a/TjKnr6pT"
+    },
+    {
+      "id": "361035227",
+      "title": "Stuff quiz: The week that was news quiz for September 20, 2026",
+      "datetime_iso8601": "20260920T040000+1200",
+      "embed": "https://www.riddle.com/embed/a/KHUQFc62"
     },
     {
       "id": "361022722",
@@ -157,16 +163,16 @@
       "embed": "https://www.riddle.com/embed/a/AIykdn6S"
     },
     {
-      "id": "361026924",
-      "title": "Stuff Quiz: He Kupu Nanu: September 18, 2026",
-      "datetime_iso8601": "20260918T040000+1200",
-      "embed": "https://www.riddle.com/embed/a/ZQC1B8MO"
-    },
-    {
       "id": "361029730",
       "title": "Stuff quiz: Morning trivia challenge: September 18, 2026",
       "datetime_iso8601": "20260918T040000+1200",
       "embed": "https://www.riddle.com/embed/a/b45iqpFa"
+    },
+    {
+      "id": "361026924",
+      "title": "Stuff Quiz: He Kupu Nanu: September 18, 2026",
+      "datetime_iso8601": "20260918T040000+1200",
+      "embed": "https://www.riddle.com/embed/a/ZQC1B8MO"
     },
     {
       "id": "361027938",
@@ -203,12 +209,6 @@
       "title": "Stuff Quiz: The Hard Word: September 16, 2026",
       "datetime_iso8601": "20260916T090000+1200",
       "embed": "https://www.riddle.com/embed/a/iEZn5BYj"
-    },
-    {
-      "id": "361026920",
-      "title": "Stuff Quiz: He Kupu Nanu: September 16, 2026",
-      "datetime_iso8601": "20260916T040000+1200",
-      "embed": "https://www.riddle.com/embed/a/MCTES5le"
     },
     {
       "id": "361029713",
