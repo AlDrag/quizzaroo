@@ -28,7 +28,7 @@ curl --fail --silent --show-error \
               datetime_iso8601,
               embed: ([(.html_assets[0].data_content // "") | capture("iframe.*src=\"(?<a>[^?]*)").a] | first // "")
             }
-        ] | sort_by(.datetime_iso8601) | reverse
+        ] | sort_by([.datetime_iso8601, .id]) | reverse
       }' > "$TMP"
 
 # Never overwrite good data with a scrape that came back broken.

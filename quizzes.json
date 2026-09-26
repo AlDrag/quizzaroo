@@ -109,22 +109,16 @@
       "embed": "https://www.riddle.com/embed/a/z5YaTvZJ"
     },
     {
-      "id": "361022725",
-      "title": "Stuff Quiz: The Really Hard Word: September 20, 2026",
-      "datetime_iso8601": "20260920T150000+1200",
-      "embed": "https://www.riddle.com/embed/a/rwj0qqDd"
-    },
-    {
       "id": "361029739",
       "title": "Stuff quiz: Kids trivia challenge: September 20, 2026",
       "datetime_iso8601": "20260920T150000+1200",
       "embed": "https://www.riddle.com/embed/a/pTO2L9Xt"
     },
     {
-      "id": "361026933",
-      "title": "Stuff Quiz: He Kupu Nanu: September 20, 2026",
-      "datetime_iso8601": "20260920T040000+1200",
-      "embed": "https://www.riddle.com/embed/a/TjKnr6pT"
+      "id": "361022725",
+      "title": "Stuff Quiz: The Really Hard Word: September 20, 2026",
+      "datetime_iso8601": "20260920T150000+1200",
+      "embed": "https://www.riddle.com/embed/a/rwj0qqDd"
     },
     {
       "id": "361035227",
@@ -133,22 +127,28 @@
       "embed": "https://www.riddle.com/embed/a/KHUQFc62"
     },
     {
+      "id": "361026933",
+      "title": "Stuff Quiz: He Kupu Nanu: September 20, 2026",
+      "datetime_iso8601": "20260920T040000+1200",
+      "embed": "https://www.riddle.com/embed/a/TjKnr6pT"
+    },
+    {
       "id": "361022722",
       "title": "Stuff Quiz: The Really Hard Word: September 19, 2026",
       "datetime_iso8601": "20260919T150000+1200",
       "embed": "https://www.riddle.com/embed/a/RPefpxcc"
     },
     {
-      "id": "361026928",
-      "title": "Stuff Quiz: He Kupu Nanu: September 19, 2026",
-      "datetime_iso8601": "20260919T040000+1200",
-      "embed": "https://www.riddle.com/embed/a/64kpir3v"
-    },
-    {
       "id": "361029735",
       "title": "Stuff quiz: Weekender trivia challenge: September 19, 2026",
       "datetime_iso8601": "20260919T040000+1200",
       "embed": "https://www.riddle.com/embed/a/j3RuMQlF"
+    },
+    {
+      "id": "361026928",
+      "title": "Stuff Quiz: He Kupu Nanu: September 19, 2026",
+      "datetime_iso8601": "20260919T040000+1200",
+      "embed": "https://www.riddle.com/embed/a/64kpir3v"
     },
     {
       "id": "361028337",
