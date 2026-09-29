@@ -166,9 +166,15 @@ obtainWSAccessToken().then(({ accessToken, websocketBaseURL }) => {
 
                 for (let i = 1; i < blockIds.length; i++) {
                     const blockId = blockIds[i];
+                    const block = blocks[blockIds.indexOf(blockId)];
+
+                    // Ads and other non-quiz blocks do not have answer choices.
+                    if (block?.typeGroup !== "Quiz") {
+                        continue;
+                    }
 
                     // Match the time the normal client spends moving to the next block.
-                    await wait(900);
+                    // await wait(900);
                     const viewResponse = await sendAndWait({
                         commandId: 1,
                         messageType: 1,
@@ -182,7 +188,6 @@ obtainWSAccessToken().then(({ accessToken, websocketBaseURL }) => {
 
                     // Allow the viewed block's timer/state to settle before submitting.
                     // await wait(900);
-                    const block = blocks[blockIds.indexOf(blockId)];
                     const choiceIds = getChoiceIds(block);
                     if (choiceIds.length === 0) {
                         console.error(`No choice IDs found for block ${blockId}; stopping quiz submission.`, block);
