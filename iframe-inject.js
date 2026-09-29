@@ -145,6 +145,13 @@ obtainWSAccessToken().then(({ accessToken, websocketBaseURL }) => {
             // The first response is the authentication response.
             const firstBlock = blockIds[0];
             void (async () => {
+                const firstBlockData = blocks[blockIds.indexOf(firstBlock)];
+                const firstChoiceIds = getChoiceIds(firstBlockData);
+                if (firstChoiceIds.length === 0) {
+                    console.error(`No choice IDs found for block ${firstBlock}; stopping quiz submission.`, firstBlockData);
+                    return;
+                }
+
                 const firstResponse = await sendAndWait({
                     commandId: 1,
                     messageType: 1,
@@ -152,7 +159,7 @@ obtainWSAccessToken().then(({ accessToken, websocketBaseURL }) => {
                     scope: 1,
                     fwd: [
                         { riddleId, messageType: 1, commandId: 1, blockId: firstBlock, blockEvents: { core_metrics: "start" } },
-                        { riddleId, messageType: 1, commandId: 1, blockId: firstBlock, blockData: [0], blockEvents: { core_metrics: "submit" } }
+                        { riddleId, messageType: 1, commandId: 1, blockId: firstBlock, blockData: [firstChoiceIds[0]], blockEvents: { core_metrics: "submit" } }
                     ]
                 });
                 if (!firstResponse.success) return;
