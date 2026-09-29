@@ -56,6 +56,49 @@ obtainWSAccessToken().then(({ accessToken, websocketBaseURL }) => {
     const websocket = new WebSocket(websocketBaseURL + "/1");
 
     let firstRequest = true;
+    let requestToken = accessToken;
+    let requestSequence = 0;
+    const pendingRequests = new Map();
+
+    const sendAndWait = (payload) => new Promise((resolve) => {
+        const id = `${requestToken}_${Math.random().toString(36).slice(2)}_${++requestSequence}`;
+        pendingRequests.set(id, resolve);
+        websocket.send(JSON.stringify({ ...payload, id }));
+    });
+    const wait = (duration) => new Promise(resolve => setTimeout(resolve, duration));
+
+    const getChoiceIds = (block) => {
+        const ids = [];
+        const visit = (value, key = '', inChoiceData = false) => {
+            if (!value || typeof value !== 'object') return;
+            const choiceData = inChoiceData || /choice|answer|option|quizItems/i.test(key);
+
+            if (Array.isArray(value)) {
+                if (choiceData) {
+                    for (const item of value) {
+                        if (Number.isInteger(item)) {
+                            ids.push(item);
+                        } else {
+                            const id = Number(item?.choiceId ?? item?.answerId ?? item?.id);
+                            if (Number.isInteger(id)) ids.push(id);
+                        }
+                    }
+                }
+                value.forEach(item => visit(item, '', choiceData));
+                return;
+            }
+
+            for (const [childKey, child] of Object.entries(value)) {
+                if (choiceData && /^(choiceId|answerId|id)$/i.test(childKey) && Number.isInteger(child)) {
+                    ids.push(child);
+                }
+                visit(child, childKey, choiceData);
+            }
+        };
+
+        visit(block);
+        return [...new Set(ids)];
+    };
 
     window.results = [];
 
@@ -70,6 +113,18 @@ obtainWSAccessToken().then(({ accessToken, websocketBaseURL }) => {
 
     websocket.onmessage = (msg) => {
         const msgJSON = JSON.parse(msg.data);
+
+        // The handshake rotates the access token; subsequent command IDs use it.
+        if (msgJSON.commandId === 2 && msgJSON.success && msgJSON.accessToken) {
+            requestToken = msgJSON.accessToken;
+        }
+
+        // Resolve only the request acknowledged by this response. This keeps
+        // block submissions ordered even if the server also sends other events.
+        if (msgJSON.id && pendingRequests.has(msgJSON.id)) {
+            pendingRequests.get(msgJSON.id)(msgJSON);
+            pendingRequests.delete(msgJSON.id);
+        }
 
         if (Array.isArray(msgJSON.votingResult) && msgJSON.votingResult.length === 1) {
             const result = msgJSON.votingResult[0];
@@ -87,36 +142,60 @@ obtainWSAccessToken().then(({ accessToken, websocketBaseURL }) => {
                 window.results.push({ blockId: result.blockId, answerId });
             }
         } else if (firstRequest) {
-            // The first request response is always the authentication response so we send the start msg & loop through the quiz
+            // The first response is the authentication response.
             const firstBlock = blockIds[0];
-            websocket.send(JSON.stringify({
-                commandId: 1,
-                id: btoa('randomID') + Math.random().toString(),
-                messageType: 1,
-                riddleId,
-                scope: 1,
-                fwd: [
-                    { riddleId, messageType: 1, commandId: 1, blockId: firstBlock, blockEvents: { core_metrics: "start" } },
-                    { riddleId, messageType: 1, commandId: 1, blockId: firstBlock, blockData: [3], blockEvents: { core_metrics: "submit" } }
-                ]
-            }));
+            void (async () => {
+                const firstResponse = await sendAndWait({
+                    commandId: 1,
+                    messageType: 1,
+                    riddleId,
+                    scope: 1,
+                    fwd: [
+                        { riddleId, messageType: 1, commandId: 1, blockId: firstBlock, blockEvents: { core_metrics: "start" } },
+                        { riddleId, messageType: 1, commandId: 1, blockId: firstBlock, blockData: [0], blockEvents: { core_metrics: "submit" } }
+                    ]
+                });
+                if (!firstResponse.success) return;
 
-            firstRequest = false;
+                for (let i = 1; i < blockIds.length; i++) {
+                    const blockId = blockIds[i];
 
-            for (let i = 1; i < blockIds.length; i++) {
-                setTimeout(() => {
-                    websocket.send(JSON.stringify({
+                    // Match the time the normal client spends moving to the next block.
+                    await wait(900);
+                    const viewResponse = await sendAndWait({
                         commandId: 1,
-                        id: btoa('randomID') + Math.random().toString(),
                         messageType: 1,
                         riddleId,
                         scope: 1,
                         fwd: [
-                            { riddleId, messageType: 1, commandId: 1, blockId: blockIds[i], blockData: [3], blockEvents: { core_metrics: "submit" } }
+                            { riddleId, messageType: 1, commandId: 1, blockId, blockEvents: { core_metrics: "view" } }
                         ]
-                    }));
-                }, i * 100);
-            }
+                    });
+                    if (!viewResponse.success) return;
+
+                    // Allow the viewed block's timer/state to settle before submitting.
+                    // await wait(900);
+                    const block = blocks[blockIds.indexOf(blockId)];
+                    const choiceIds = getChoiceIds(block);
+                    if (choiceIds.length === 0) {
+                        console.error(`No choice IDs found for block ${blockId}; stopping quiz submission.`, block);
+                        return;
+                    }
+                    const answerId = choiceIds[0];
+
+                    const submitResponse = await sendAndWait({
+                        commandId: 1,
+                        messageType: 1,
+                        riddleId,
+                        scope: 1,
+                        fwd: [
+                            { riddleId, messageType: 1, commandId: 1, blockId, blockData: [answerId], blockEvents: { core_metrics: "submit" } }
+                        ]
+                    });
+                    if (!submitResponse.success) return;
+                }
+            })();
+            firstRequest = false;
         }
     }
 });
