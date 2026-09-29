@@ -280,21 +280,19 @@ window.randomChoice = () => {
     }
 };
 
-// Monty Hall lifeline: lock in an answer, one of the wrong answers you didn't
-// pick gets revealed, then you can switch to another answer or stay with your
-// pick. Staying just submits your pick and the quiz carries on as normal.
+// Monty Hall lifeline: turn each answer into a door. Opening a door reveals
+// whether it hides the car (correct answer) or a goat (wrong answer).
 (() => {
     const state = {
         armed: false,
         passthrough: false,
-        revealing: false,
         blockId: null,
+        choiceLayout: null,
+        choiceStyles: new Map(),
         lockedChoiceId: null,
+        revealing: false,
     };
 
-    let revealTimeout;
-
-    // Choices dimmed to nothing were removed by the 50:50 lifeline.
     const liveChoices = () =>
         Array.from(document.querySelectorAll('.choice')).filter(choice => choice.style.opacity !== '0');
 
@@ -326,12 +324,61 @@ window.randomChoice = () => {
         state.blockId = blockId;
         state.lockedChoiceId = null;
 
+        const choiceContainer = choices[0].parentElement;
+        state.choiceLayout = {
+            element: choiceContainer,
+            display: choiceContainer.style.display,
+            flexDirection: choiceContainer.style.flexDirection,
+            flexWrap: choiceContainer.style.flexWrap,
+            justifyContent: choiceContainer.style.justifyContent,
+            gap: choiceContainer.style.gap,
+        };
+        Object.assign(choiceContainer.style, {
+            display: 'flex',
+            flexDirection: 'row',
+            flexWrap: 'nowrap',
+            justifyContent: 'center',
+            gap: '12px',
+        });
+
+        for (const choice of choices) {
+            choice.dataset.montyHallDoor = 'true';
+            state.choiceStyles.set(choice, {
+                height: choice.style.height,
+                minHeight: choice.style.minHeight,
+                flex: choice.style.flex,
+                color: choice.style.color,
+            });
+            const door = document.createElement('span');
+            door.className = 'monty-hall-door';
+            door.textContent = choice.innerText;
+            Object.assign(door.style, {
+                position: 'absolute', inset: '0', zIndex: '5', display: 'flex',
+                alignItems: 'center', justifyContent: 'center', boxSizing: 'border-box', width: '100%',
+                padding: '12px', textAlign: 'center', lineHeight: '1.1', color: '#fff',
+                overflow: 'hidden', overflowWrap: 'anywhere',
+                fontSize: 'clamp(22px, 3vw, 36px)',
+                background: 'linear-gradient(110deg, #8b4513, #c87938 48%, #8b4513)',
+                border: '5px solid #5b2d0b', borderRadius: '8px',
+                boxShadow: 'inset 0 0 0 3px #e7b16f, 0 5px 10px #0005',
+                cursor: 'pointer',
+            });
+            choice.style.position = 'relative';
+            choice.style.overflow = 'hidden';
+            choice.style.height = '220px';
+            choice.style.minHeight = '220px';
+            choice.style.flex = '1 1 200px';
+            choice.style.color = 'transparent';
+            Array.from(choice.children).forEach(child => child.style.visibility = 'hidden');
+            choice.appendChild(door);
+        }
+
         // Capture phase so the quiz never sees the clicks we're stealing.
         for (const type of ['pointerdown', 'mousedown', 'mouseup', 'click']) {
             document.addEventListener(type, interceptor, true);
         }
 
-        banner('🐐 Monty Hall: click an answer to lock it in.', true);
+        banner('🚪 Choose a door to lock in your answer.', true);
     };
 
     function interceptor(event) {
@@ -360,76 +407,82 @@ window.randomChoice = () => {
             return;
         }
 
-        if (choice.style.opacity === '0' || choice.dataset.montyHallRevealed === 'true') {
-            return;
-        }
-
-        // Mid-reveal: hold the drumroll, no committing yet.
-        if (state.revealing) {
+        if (choice.style.opacity === '0' || choice.dataset.montyHallOpened === 'true' || state.revealing) {
             return;
         }
 
         if (state.lockedChoiceId === null) {
-            lockIn(choice);
-        } else {
-            commit(choice);
-        }
-    }
+            state.lockedChoiceId = choiceId(choice);
+            choice.style.outline = '4px solid #7c3aed';
+            choice.style.outlineOffset = '-4px';
+            const lockedDoor = choice.querySelector('.monty-hall-door');
+            lockedDoor.style.background = 'linear-gradient(135deg, #f7d51d, #fff176 48%, #e6a700)';
+            lockedDoor.style.borderColor = '#a66b00';
+            lockedDoor.style.color = '#422b00';
+            state.revealing = true;
+            banner('🔒 Answer locked! Monty is opening a goat door…', true);
 
-    function lockIn(choice) {
-        state.lockedChoiceId = choiceId(choice);
-        choice.style.outline = '4px solid purple';
-        choice.style.outlineOffset = '-4px';
-
-        const answerId = window.results.find(result => result.blockId === state.blockId).answerId;
-        const revealable = liveChoices().filter(
-            other => choiceId(other) !== answerId && choiceId(other) !== state.lockedChoiceId,
-        );
-
-        if (!revealable.length) {
-            // Nothing left to reveal, so there's nothing to switch to either.
-            banner('No wrong answer left to reveal — locking that in!');
-            commit(choice);
+            setTimeout(() => {
+                if (!state.armed || !choice.isConnected) return;
+                const answerId = window.results.find(result => result.blockId === state.blockId).answerId;
+                const wrongDoors = liveChoices().filter(other =>
+                    choiceId(other) !== answerId && choiceId(other) !== state.lockedChoiceId
+                );
+                state.revealing = false;
+                if (!wrongDoors.length) {
+                    banner('No goat door can be opened. Choose an answer to finish.', true);
+                    return;
+                }
+                const goatChoice = wrongDoors[Math.floor(Math.random() * wrongDoors.length)];
+                const goatDoor = goatChoice.querySelector('.monty-hall-door');
+                goatChoice.dataset.montyHallOpened = 'true';
+                goatDoor.textContent = '🐐';
+                goatDoor.style.background = 'linear-gradient(135deg, #8b342d, #d66b5b)';
+                goatDoor.style.borderColor = '#65201b';
+                banner('🐐 Monty opened a goat! Switch doors or choose your locked door to stay.', true);
+            }, 900);
             return;
         }
 
-        state.revealing = true;
-        banner('🐐 Locked in! Looking for a wrong answer...', true);
-
-        revealTimeout = setTimeout(() => {
-            state.revealing = false;
-
-            // The quiz may have moved on while we were being dramatic.
-            if (!state.armed || !choice.isConnected) {
-                return;
-            }
-
-            const revealed = revealable[Math.floor(Math.random() * revealable.length)];
-            revealed.dataset.montyHallRevealed = 'true';
-            revealed.style.outline = '4px solid red';
-            revealed.style.outlineOffset = '-4px';
-
-            banner('🐐 A wrong answer highlighted! Click another answer to switch, or click your pick again to stay.', true);
-        }, 1000);
+        if (choice.dataset.montyHallOpened === 'true') return;
+        finish(choice);
     }
 
-    function commit(choice) {
-        const switched = choiceId(choice) !== state.lockedChoiceId;
+    function finish(choice) {
+        const answerId = window.results.find(result => result.blockId === state.blockId).answerId;
+        const correct = choiceId(choice) === answerId;
+        choice.dataset.montyHallOpened = 'true';
+        const door = choice.querySelector('.monty-hall-door');
+        door.textContent = correct ? '🚗' : '🐐';
+        door.style.background = correct ? 'linear-gradient(135deg, #287a37, #61b94f)' : 'linear-gradient(135deg, #8b342d, #d66b5b)';
+        door.style.borderColor = correct ? '#155524' : '#65201b';
+        banner(correct ? '🚗 You found the car!' : '🐐 A goat!');
 
-        disarm();
-        banner(switched ? 'Switched! 🐐' : 'Sticking with it! 🐐');
-
-        for (const other of document.querySelectorAll('.choice')) {
-            other.style.outline = '';
-            other.style.outlineOffset = '';
-            delete other.dataset.montyHallRevealed;
-        }
-
-        // Replay the click for real so the quiz registers the answer, whether it
-        // submits on click or waits for its own submit button.
-        state.passthrough = true;
-        replayClick(choice);
-        state.passthrough = false;
+        setTimeout(() => {
+            if (!choice.isConnected) return;
+            disarm();
+            for (const other of document.querySelectorAll('.choice')) {
+                other.querySelector('.monty-hall-door')?.remove();
+                Array.from(other.children).forEach(child => child.style.visibility = '');
+                other.style.position = '';
+                other.style.overflow = '';
+                other.style.outline = '';
+                other.style.outlineOffset = '';
+                const originalStyles = state.choiceStyles.get(other);
+                if (originalStyles) Object.assign(other.style, originalStyles);
+                state.choiceStyles.delete(other);
+                delete other.dataset.montyHallDoor;
+                delete other.dataset.montyHallOpened;
+            }
+            if (state.choiceLayout?.element) {
+                const { element, ...styles } = state.choiceLayout;
+                Object.assign(element.style, styles);
+                state.choiceLayout = null;
+            }
+            state.passthrough = true;
+            replayClick(choice);
+            state.passthrough = false;
+        }, 900);
     }
 
     function abort() {
@@ -439,8 +492,6 @@ window.randomChoice = () => {
 
     function disarm() {
         state.armed = false;
-        state.revealing = false;
-        clearTimeout(revealTimeout);
         for (const type of ['pointerdown', 'mousedown', 'mouseup', 'click']) {
             document.removeEventListener(type, interceptor, true);
         }
