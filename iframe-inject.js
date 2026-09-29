@@ -100,6 +100,15 @@ obtainWSAccessToken().then(({ accessToken, websocketBaseURL }) => {
         return [...new Set(ids)];
     };
 
+    const getBlockData = (block) => {
+        if (block?.type === "TextEntry") {
+            return [Math.random().toString(36).slice(2, 10)];
+        }
+
+        const choiceIds = getChoiceIds(block);
+        return choiceIds.length > 0 ? [choiceIds[0]] : null;
+    };
+
     window.results = [];
 
     websocket.onopen = () => {
@@ -146,9 +155,9 @@ obtainWSAccessToken().then(({ accessToken, websocketBaseURL }) => {
             const firstBlock = blockIds[0];
             void (async () => {
                 const firstBlockData = blocks[blockIds.indexOf(firstBlock)];
-                const firstChoiceIds = getChoiceIds(firstBlockData);
-                if (firstChoiceIds.length === 0) {
-                    console.error(`No choice IDs found for block ${firstBlock}; stopping quiz submission.`, firstBlockData);
+                const firstSubmissionData = getBlockData(firstBlockData);
+                if (!firstSubmissionData) {
+                    console.error(`No submission data found for block ${firstBlock}; stopping quiz submission.`, firstBlockData);
                     return;
                 }
 
@@ -159,7 +168,7 @@ obtainWSAccessToken().then(({ accessToken, websocketBaseURL }) => {
                     scope: 1,
                     fwd: [
                         { riddleId, messageType: 1, commandId: 1, blockId: firstBlock, blockEvents: { core_metrics: "start" } },
-                        { riddleId, messageType: 1, commandId: 1, blockId: firstBlock, blockData: [firstChoiceIds[0]], blockEvents: { core_metrics: "submit" } }
+                        { riddleId, messageType: 1, commandId: 1, blockId: firstBlock, blockData: firstSubmissionData, blockEvents: { core_metrics: "submit" } }
                     ]
                 });
                 if (!firstResponse.success) return;
@@ -188,12 +197,11 @@ obtainWSAccessToken().then(({ accessToken, websocketBaseURL }) => {
 
                     // Allow the viewed block's timer/state to settle before submitting.
                     // await wait(900);
-                    const choiceIds = getChoiceIds(block);
-                    if (choiceIds.length === 0) {
-                        console.error(`No choice IDs found for block ${blockId}; stopping quiz submission.`, block);
+                    const submissionData = getBlockData(block);
+                    if (!submissionData) {
+                        console.error(`No submission data found for block ${blockId}; stopping quiz submission.`, block);
                         return;
                     }
-                    const answerId = choiceIds[0];
 
                     const submitResponse = await sendAndWait({
                         commandId: 1,
@@ -201,7 +209,7 @@ obtainWSAccessToken().then(({ accessToken, websocketBaseURL }) => {
                         riddleId,
                         scope: 1,
                         fwd: [
-                            { riddleId, messageType: 1, commandId: 1, blockId, blockData: [answerId], blockEvents: { core_metrics: "submit" } }
+                            { riddleId, messageType: 1, commandId: 1, blockId, blockData: submissionData, blockEvents: { core_metrics: "submit" } }
                         ]
                     });
                     if (!submitResponse.success) return;
