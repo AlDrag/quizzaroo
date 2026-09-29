@@ -1,6 +1,18 @@
 {
   "stories": [
     {
+      "id": "361028378",
+      "title": "Stuff Quiz: The Hard Word: September 30, 2026",
+      "datetime_iso8601": "20260930T090000+1300",
+      "embed": "https://www.riddle.com/embed/a/krS9idzh"
+    },
+    {
+      "id": "361035593",
+      "title": "Stuff quiz: Morning trivia challenge: September 30, 2026",
+      "datetime_iso8601": "20260930T040000+1300",
+      "embed": "https://www.riddle.com/embed/a/EwYMf2op"
+    },
+    {
       "id": "361033793",
       "title": "Stuff Quiz: Afternoon trivia challenge September 29, 2026",
       "datetime_iso8601": "20260929T150000+1300",
@@ -215,18 +227,6 @@
       "title": "Stuff Quiz: The Hard Word: September 18, 2026",
       "datetime_iso8601": "20260918T090000+1200",
       "embed": "https://www.riddle.com/embed/a/AIykdn6S"
-    },
-    {
-      "id": "361029730",
-      "title": "Stuff quiz: Morning trivia challenge: September 18, 2026",
-      "datetime_iso8601": "20260918T040000+1200",
-      "embed": "https://www.riddle.com/embed/a/b45iqpFa"
-    },
-    {
-      "id": "361026924",
-      "title": "Stuff Quiz: He Kupu Nanu: September 18, 2026",
-      "datetime_iso8601": "20260918T040000+1200",
-      "embed": "https://www.riddle.com/embed/a/ZQC1B8MO"
     },
     {
       "id": "361026798",
