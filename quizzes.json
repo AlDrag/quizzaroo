@@ -1,6 +1,24 @@
 {
   "stories": [
     {
+      "id": "361040558",
+      "title": "BRB from your job and have a crack at our keyboard slang quiz",
+      "datetime_iso8601": "20261001T103000+1300",
+      "embed": "https://www.riddle.com/embed/a/STEBfAd2"
+    },
+    {
+      "id": "361028380",
+      "title": "Stuff Quiz: The Hard Word: October 1, 2026",
+      "datetime_iso8601": "20261001T090000+1300",
+      "embed": "https://www.riddle.com/embed/a/E90l0oyA"
+    },
+    {
+      "id": "361035599",
+      "title": "Stuff quiz: Morning trivia challenge: October 1, 2026",
+      "datetime_iso8601": "20261001T040000+1300",
+      "embed": "https://www.riddle.com/embed/a/zY38E1Ot"
+    },
+    {
       "id": "361034095",
       "title": "Stuff Quiz: Afternoon trivia challenge September 30, 2026",
       "datetime_iso8601": "20260930T150000+1300",
@@ -205,28 +223,10 @@
       "embed": "https://www.riddle.com/embed/a/TjKnr6pT"
     },
     {
-      "id": "361022722",
-      "title": "Stuff Quiz: The Really Hard Word: September 19, 2026",
-      "datetime_iso8601": "20260919T150000+1200",
-      "embed": "https://www.riddle.com/embed/a/RPefpxcc"
-    },
-    {
       "id": "361029735",
       "title": "Stuff quiz: Weekender trivia challenge: September 19, 2026",
       "datetime_iso8601": "20260919T040000+1200",
       "embed": "https://www.riddle.com/embed/a/j3RuMQlF"
-    },
-    {
-      "id": "361026928",
-      "title": "Stuff Quiz: He Kupu Nanu: September 19, 2026",
-      "datetime_iso8601": "20260919T040000+1200",
-      "embed": "https://www.riddle.com/embed/a/64kpir3v"
-    },
-    {
-      "id": "361028337",
-      "title": "Stuff Quiz: Afternoon trivia challenge September 18, 2026",
-      "datetime_iso8601": "20260918T150000+1200",
-      "embed": "https://www.riddle.com/embed/a/1mBAPddt"
     },
     {
       "id": "361026798",
