@@ -1,6 +1,12 @@
 {
   "stories": [
     {
+      "id": "361034244",
+      "title": "Stuff Quiz: Afternoon trivia challenge October 1, 2026",
+      "datetime_iso8601": "20261001T150000+1300",
+      "embed": "https://www.riddle.com/embed/a/2tRzGwOm"
+    },
+    {
       "id": "361040558",
       "title": "BRB from your job and have a crack at our keyboard slang quiz",
       "datetime_iso8601": "20261001T103000+1300",
@@ -83,6 +89,12 @@
       "title": "Stuff quiz: Kids trivia challenge: September 27, 2026",
       "datetime_iso8601": "20260927T150000+1300",
       "embed": "https://www.riddle.com/embed/a/KRM1dNd8"
+    },
+    {
+      "id": "361034784",
+      "title": "What kind of holiday in Melbourne has your name on it?",
+      "datetime_iso8601": "20260927T050000+1300",
+      "embed": "https://www.riddle.com/embed/a/AQDpADJq"
     },
     {
       "id": "361038329",
@@ -217,12 +229,6 @@
       "embed": "https://www.riddle.com/embed/a/KHUQFc62"
     },
     {
-      "id": "361026933",
-      "title": "Stuff Quiz: He Kupu Nanu: September 20, 2026",
-      "datetime_iso8601": "20260920T040000+1200",
-      "embed": "https://www.riddle.com/embed/a/TjKnr6pT"
-    },
-    {
       "id": "361029735",
       "title": "Stuff quiz: Weekender trivia challenge: September 19, 2026",
       "datetime_iso8601": "20260919T040000+1200",
@@ -257,12 +263,6 @@
       "title": "Stuff quiz: Weekender trivia challenge: September 12, 2026",
       "datetime_iso8601": "20260912T040000+1200",
       "embed": "https://www.riddle.com/embed/a/tv7hHrw8"
-    },
-    {
-      "id": "361024196",
-      "title": "Stuff Quiz: The Hard Bird: September 11, 2026",
-      "datetime_iso8601": "20260911T050000+1200",
-      "embed": "https://www.riddle.com/embed/a/66Ncnw1T"
     },
     {
       "id": "361023861",
