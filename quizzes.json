@@ -1,6 +1,24 @@
 {
   "stories": [
     {
+      "id": "361031601",
+      "title": "Stuff Quiz: The Hard Word: October 7, 2026",
+      "datetime_iso8601": "20261007T090000+1300",
+      "embed": "https://www.riddle.com/embed/a/8IRH3b9w"
+    },
+    {
+      "id": "361042999",
+      "title": "Shake Month is here: Test your emergency smarts",
+      "datetime_iso8601": "20261007T050000+1300",
+      "embed": "https://www.riddle.com/embed/a/4HzrUVh3"
+    },
+    {
+      "id": "361038896",
+      "title": "Stuff quiz: Morning trivia challenge: October 7, 2026",
+      "datetime_iso8601": "20261007T040000+1300",
+      "embed": "https://www.riddle.com/embed/a/SHuxoYsc"
+    },
+    {
       "id": "361036875",
       "title": "Stuff Quiz: Afternoon trivia challenge October 6, 2026",
       "datetime_iso8601": "20261006T150000+1300",
@@ -209,24 +227,6 @@
       "title": "Stuff Quiz: The Hard Word: September 25, 2026",
       "datetime_iso8601": "20260925T090000+1200",
       "embed": "https://www.riddle.com/embed/a/lFSBfQYm"
-    },
-    {
-      "id": "361032877",
-      "title": "Stuff quiz: Morning trivia challenge: September 25, 2026",
-      "datetime_iso8601": "20260925T040000+1200",
-      "embed": "https://www.riddle.com/embed/a/6Bq0eo9z"
-    },
-    {
-      "id": "361031118",
-      "title": "Stuff Quiz: Afternoon trivia challenge September 24, 2026",
-      "datetime_iso8601": "20260924T150000+1200",
-      "embed": "https://www.riddle.com/embed/a/dZLwqLaK"
-    },
-    {
-      "id": "361025769",
-      "title": "Stuff Quiz: The Hard Word: September 24, 2026",
-      "datetime_iso8601": "20260924T090000+1200",
-      "embed": "https://www.riddle.com/embed/a/DJi61w0G"
     },
     {
       "id": "361034279",
