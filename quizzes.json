@@ -1,6 +1,24 @@
 {
   "stories": [
     {
+      "id": "361042999",
+      "title": "Shake Month is here: Test your emergency smarts",
+      "datetime_iso8601": "20261008T103504+1300",
+      "embed": "https://www.riddle.com/embed/a/4HzrUVh3"
+    },
+    {
+      "id": "361031605",
+      "title": "Stuff Quiz: The Hard Word: October 8, 2026",
+      "datetime_iso8601": "20261008T090000+1300",
+      "embed": "https://www.riddle.com/embed/a/jDf52TsN"
+    },
+    {
+      "id": "361038899",
+      "title": "Stuff quiz: Morning trivia challenge: October 8, 2026",
+      "datetime_iso8601": "20261008T040000+1300",
+      "embed": "https://www.riddle.com/embed/a/EAfxURKj"
+    },
+    {
       "id": "361037369",
       "title": "Stuff Quiz: Afternoon trivia challenge October 7, 2026",
       "datetime_iso8601": "20261007T150000+1300",
@@ -11,12 +29,6 @@
       "title": "Stuff Quiz: The Hard Word: October 7, 2026",
       "datetime_iso8601": "20261007T090000+1300",
       "embed": "https://www.riddle.com/embed/a/8IRH3b9w"
-    },
-    {
-      "id": "361042999",
-      "title": "Shake Month is here: Test your emergency smarts",
-      "datetime_iso8601": "20261007T050000+1300",
-      "embed": "https://www.riddle.com/embed/a/4HzrUVh3"
     },
     {
       "id": "361038896",
@@ -211,22 +223,10 @@
       "embed": "https://www.riddle.com/embed/a/esqattS3"
     },
     {
-      "id": "361025773",
-      "title": "Stuff Quiz: The Really Hard Word: September 26, 2026",
-      "datetime_iso8601": "20260926T150000+1200",
-      "embed": "https://www.riddle.com/embed/a/lQgzD3tj"
-    },
-    {
       "id": "361032880",
       "title": "Stuff quiz: Weekender trivia challenge: September 26, 2026",
       "datetime_iso8601": "20260926T040000+1200",
       "embed": "https://www.riddle.com/embed/a/dNKekqbO"
-    },
-    {
-      "id": "361031271",
-      "title": "Stuff Quiz: Afternoon trivia challenge September 25, 2026",
-      "datetime_iso8601": "20260925T150000+1200",
-      "embed": "https://www.riddle.com/embed/a/XBL8xx2M"
     },
     {
       "id": "361034279",
