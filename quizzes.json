@@ -1,6 +1,18 @@
 {
   "stories": [
     {
+      "id": "361031609",
+      "title": "Stuff Quiz: The Hard Word: October 9, 2026",
+      "datetime_iso8601": "20261009T090000+1300",
+      "embed": "https://www.riddle.com/embed/a/OHcXduEl"
+    },
+    {
+      "id": "361038902",
+      "title": "Stuff quiz: Morning trivia challenge: October 9, 2026",
+      "datetime_iso8601": "20261009T040000+1300",
+      "embed": "https://www.riddle.com/embed/a/ydb7jKsw"
+    },
+    {
       "id": "361037398",
       "title": "Stuff Quiz: Afternoon trivia challenge October 8, 2026",
       "datetime_iso8601": "20261008T150000+1300",
@@ -191,18 +203,6 @@
       "title": "Stuff Quiz: Afternoon trivia challenge September 28, 2026",
       "datetime_iso8601": "20260928T150000+1300",
       "embed": "https://www.riddle.com/embed/a/f1cWVHQk"
-    },
-    {
-      "id": "361028371",
-      "title": "Stuff Quiz: The Hard Word: September 28, 2026",
-      "datetime_iso8601": "20260928T100000+1300",
-      "embed": "https://www.riddle.com/embed/a/mJqX0YSp"
-    },
-    {
-      "id": "361035586",
-      "title": "Stuff quiz: Morning trivia challenge: September 28, 2026",
-      "datetime_iso8601": "20260928T040000+1300",
-      "embed": "https://www.riddle.com/embed/a/WRYYCjKM"
     },
     {
       "id": "361032883",
