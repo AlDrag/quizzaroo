@@ -1,6 +1,12 @@
 {
   "stories": [
     {
+      "id": "361037398",
+      "title": "Stuff Quiz: Afternoon trivia challenge October 8, 2026",
+      "datetime_iso8601": "20261008T150000+1300",
+      "embed": "https://www.riddle.com/embed/a/qAelTF79"
+    },
+    {
       "id": "361042999",
       "title": "Shake Month is here: Test your emergency smarts",
       "datetime_iso8601": "20261008T103504+1300",
@@ -197,12 +203,6 @@
       "title": "Stuff quiz: Morning trivia challenge: September 28, 2026",
       "datetime_iso8601": "20260928T040000+1300",
       "embed": "https://www.riddle.com/embed/a/WRYYCjKM"
-    },
-    {
-      "id": "361025775",
-      "title": "Stuff Quiz: The Really Hard Word: September 27, 2026",
-      "datetime_iso8601": "20260927T160000+1300",
-      "embed": "https://www.riddle.com/embed/a/hxeEWEPs"
     },
     {
       "id": "361032883",
