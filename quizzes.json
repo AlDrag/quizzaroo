@@ -1,6 +1,12 @@
 {
   "stories": [
     {
+      "id": "361038905",
+      "title": "Stuff quiz: Weekender trivia challenge: October 10, 2026",
+      "datetime_iso8601": "20261010T040000+1300",
+      "embed": "https://www.riddle.com/embed/a/RHs3ooz0"
+    },
+    {
       "id": "361037654",
       "title": "Stuff Quiz: Afternoon trivia challenge October 9, 2026",
       "datetime_iso8601": "20261009T150000+1300",
@@ -275,12 +281,6 @@
       "title": "Stuff Quiz: The Hard Bird: September 12, 2026",
       "datetime_iso8601": "20260912T050000+1200",
       "embed": "https://www.riddle.com/embed/a/zEz0A0N1"
-    },
-    {
-      "id": "361026795",
-      "title": "Stuff quiz: Weekender trivia challenge: September 12, 2026",
-      "datetime_iso8601": "20260912T040000+1200",
-      "embed": "https://www.riddle.com/embed/a/tv7hHrw8"
     },
     {
       "id": "350116503",
