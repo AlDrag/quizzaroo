@@ -1,6 +1,12 @@
 {
   "stories": [
     {
+      "id": "361031617",
+      "title": "Stuff Quiz: The Really Hard Word: October 10, 2026",
+      "datetime_iso8601": "20261010T150000+1300",
+      "embed": "https://www.riddle.com/embed/a/aJNyrmwo"
+    },
+    {
       "id": "361038905",
       "title": "Stuff quiz: Weekender trivia challenge: October 10, 2026",
       "datetime_iso8601": "20261010T040000+1300",
@@ -203,12 +209,6 @@
       "title": "Stuff Quiz: The Hard Word: September 29, 2026",
       "datetime_iso8601": "20260929T090000+1300",
       "embed": "https://www.riddle.com/embed/a/JgrpJEbg"
-    },
-    {
-      "id": "361035589",
-      "title": "Stuff quiz: Morning trivia challenge: September 29, 2026",
-      "datetime_iso8601": "20260929T040000+1300",
-      "embed": "https://www.riddle.com/embed/a/mIobzdED"
     },
     {
       "id": "361032883",
