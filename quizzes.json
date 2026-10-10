@@ -1,6 +1,12 @@
 {
   "stories": [
     {
+      "id": "361044593",
+      "title": "Stuff quiz: The week that was news quiz for October 11, 2026",
+      "datetime_iso8601": "20261011T040000+1300",
+      "embed": "https://www.riddle.com/embed/a/NEpmgkEY"
+    },
+    {
       "id": "361031617",
       "title": "Stuff Quiz: The Really Hard Word: October 10, 2026",
       "datetime_iso8601": "20261010T150000+1300",
@@ -269,12 +275,6 @@
       "title": "Stuff Quiz: The Hard Bird: September 13, 2026",
       "datetime_iso8601": "20260913T050000+1200",
       "embed": "https://www.riddle.com/embed/a/N7MuqabQ"
-    },
-    {
-      "id": "361032154",
-      "title": "Stuff quiz: The week that was news quiz for September 13, 2026",
-      "datetime_iso8601": "20260913T040000+1200",
-      "embed": "https://www.riddle.com/embed/a/xdOkPVC4"
     },
     {
       "id": "361024200",
