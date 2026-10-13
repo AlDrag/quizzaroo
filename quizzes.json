@@ -1,6 +1,12 @@
 {
   "stories": [
     {
+      "id": "361040132",
+      "title": "Stuff Quiz: Afternoon trivia challenge October 13, 2026",
+      "datetime_iso8601": "20261013T150000+1300",
+      "embed": "https://www.riddle.com/embed/a/ig0iIZi3"
+    },
+    {
       "id": "361034644",
       "title": "Stuff Quiz: The Hard Word: October 13, 2026",
       "datetime_iso8601": "20261013T090000+1300",
@@ -215,12 +221,6 @@
       "title": "BRB from your job and have a crack at our keyboard slang quiz",
       "datetime_iso8601": "20261001T103000+1300",
       "embed": "https://www.riddle.com/embed/a/STEBfAd2"
-    },
-    {
-      "id": "361028380",
-      "title": "Stuff Quiz: The Hard Word: October 1, 2026",
-      "datetime_iso8601": "20261001T090000+1300",
-      "embed": "https://www.riddle.com/embed/a/E90l0oyA"
     },
     {
       "id": "361032883",
