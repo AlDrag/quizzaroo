@@ -1,6 +1,18 @@
 {
   "stories": [
     {
+      "id": "361042280",
+      "title": "Stuff quiz: Kids trivia challenge: October 18, 2026",
+      "datetime_iso8601": "20261018T150000+1300",
+      "embed": "https://www.riddle.com/embed/a/h5l3Xi31"
+    },
+    {
+      "id": "361034671",
+      "title": "Stuff Quiz: The Really Hard Word: October 18, 2026",
+      "datetime_iso8601": "20261018T150000+1300",
+      "embed": "https://www.riddle.com/embed/a/xXlTpjkh"
+    },
+    {
       "id": "361047338",
       "title": "Stuff quiz: The week that was news quiz for October 18, 2026",
       "datetime_iso8601": "20261018T040000+1300",
@@ -211,12 +223,6 @@
       "embed": "https://www.riddle.com/embed/a/HsPbMG25"
     },
     {
-      "id": "361038892",
-      "title": "Stuff quiz: Morning trivia challenge: October 6, 2026",
-      "datetime_iso8601": "20261006T040000+1300",
-      "embed": "https://www.riddle.com/embed/a/g8VQQoMT"
-    },
-    {
       "id": "361035611",
       "title": "Stuff quiz: Kids trivia challenge: October 4, 2026",
       "datetime_iso8601": "20261004T150000+1300",
@@ -263,12 +269,6 @@
       "title": "Think you can spot a scam? Put your cyber smarts to the test",
       "datetime_iso8601": "20260921T143000+1200",
       "embed": "https://www.riddle.com/embed/a/tZcQksmJ"
-    },
-    {
-      "id": "361029739",
-      "title": "Stuff quiz: Kids trivia challenge: September 20, 2026",
-      "datetime_iso8601": "20260920T150000+1200",
-      "embed": "https://www.riddle.com/embed/a/pTO2L9Xt"
     },
     {
       "id": "361024202",
