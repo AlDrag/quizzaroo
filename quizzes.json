@@ -1,6 +1,12 @@
 {
   "stories": [
     {
+      "id": "361048104",
+      "title": "Stuff quiz: Leaders’ debate: Who said what?",
+      "datetime_iso8601": "20261020T204058+1300",
+      "embed": "https://www.riddle.com/embed/a/eybwBPWe"
+    },
+    {
       "id": "361043133",
       "title": "Stuff Quiz: Afternoon trivia challenge October 20, 2026",
       "datetime_iso8601": "20261020T150000+1300",
@@ -215,12 +221,6 @@
       "title": "Shake Month is here: Test your emergency smarts",
       "datetime_iso8601": "20261008T103504+1300",
       "embed": "https://www.riddle.com/embed/a/4HzrUVh3"
-    },
-    {
-      "id": "361031605",
-      "title": "Stuff Quiz: The Hard Word: October 8, 2026",
-      "datetime_iso8601": "20261008T090000+1300",
-      "embed": "https://www.riddle.com/embed/a/jDf52TsN"
     },
     {
       "id": "361035611",
