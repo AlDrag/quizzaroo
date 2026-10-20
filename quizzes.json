@@ -1,6 +1,12 @@
 {
   "stories": [
     {
+      "id": "361044804",
+      "title": "Stuff quiz: Morning trivia challenge: October 21, 2026",
+      "datetime_iso8601": "20261021T040000+1300",
+      "embed": "https://www.riddle.com/embed/a/yU30FQub"
+    },
+    {
       "id": "361048104",
       "title": "Stuff quiz: Leaders’ debate: Who said what?",
       "datetime_iso8601": "20261020T204058+1300",
@@ -209,12 +215,6 @@
       "title": "Stuff quiz: Morning trivia challenge: October 9, 2026",
       "datetime_iso8601": "20261009T040000+1300",
       "embed": "https://www.riddle.com/embed/a/ydb7jKsw"
-    },
-    {
-      "id": "361037398",
-      "title": "Stuff Quiz: Afternoon trivia challenge October 8, 2026",
-      "datetime_iso8601": "20261008T150000+1300",
-      "embed": "https://www.riddle.com/embed/a/qAelTF79"
     },
     {
       "id": "361042999",
