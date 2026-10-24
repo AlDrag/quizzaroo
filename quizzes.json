@@ -1,6 +1,12 @@
 {
   "stories": [
     {
+      "id": "361050135",
+      "title": "Stuff quiz: The week that was news quiz for October 25, 2026",
+      "datetime_iso8601": "20261025T040000+1300",
+      "embed": "https://www.riddle.com/embed/a/PdtXbzrC"
+    },
+    {
       "id": "361037752",
       "title": "Stuff Quiz: The Really Hard Word: October 24, 2026",
       "datetime_iso8601": "20261024T150000+1300",
@@ -257,12 +263,6 @@
       "title": "What kind of holiday in Melbourne has your name on it?",
       "datetime_iso8601": "20260927T050000+1300",
       "embed": "https://www.riddle.com/embed/a/AQDpADJq"
-    },
-    {
-      "id": "361038329",
-      "title": "Stuff quiz: The week that was news quiz for September 27, 2026",
-      "datetime_iso8601": "20260927T040000+1300",
-      "embed": "https://www.riddle.com/embed/a/esqattS3"
     },
     {
       "id": "361034279",
