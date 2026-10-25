@@ -1,6 +1,18 @@
 {
   "stories": [
     {
+      "id": "361044820",
+      "title": "Stuff quiz: Kids trivia challenge: October 25, 2026",
+      "datetime_iso8601": "20261025T150000+1300",
+      "embed": "https://www.riddle.com/embed/a/j1J7nHZS"
+    },
+    {
+      "id": "361037760",
+      "title": "Stuff Quiz: The Really Hard Word: October 25, 2026",
+      "datetime_iso8601": "20261025T150000+1300",
+      "embed": "https://www.riddle.com/embed/a/xXuqhtVT"
+    },
+    {
       "id": "361050135",
       "title": "Stuff quiz: The week that was news quiz for October 25, 2026",
       "datetime_iso8601": "20261025T040000+1300",
@@ -211,12 +223,6 @@
       "embed": "https://www.riddle.com/embed/a/Q8Be5SoP"
     },
     {
-      "id": "361042267",
-      "title": "Stuff quiz: Morning trivia challenge: October 13, 2026",
-      "datetime_iso8601": "20261013T040000+1300",
-      "embed": "https://www.riddle.com/embed/a/sljCwyhk"
-    },
-    {
       "id": "361038922",
       "title": "Stuff quiz: Kids trivia challenge: October 11, 2026",
       "datetime_iso8601": "20261011T150000+1300",
@@ -251,12 +257,6 @@
       "title": "Stuff quiz: Weekender trivia challenge: October 3, 2026",
       "datetime_iso8601": "20261003T040000+1300",
       "embed": "https://www.riddle.com/embed/a/PXifM11R"
-    },
-    {
-      "id": "361032883",
-      "title": "Stuff quiz: Kids trivia challenge: September 27, 2026",
-      "datetime_iso8601": "20260927T150000+1300",
-      "embed": "https://www.riddle.com/embed/a/KRM1dNd8"
     },
     {
       "id": "361034784",
