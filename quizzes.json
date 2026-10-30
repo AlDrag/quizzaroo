@@ -1,6 +1,18 @@
 {
   "stories": [
     {
+      "id": "361047971",
+      "title": "Stuff quiz: Weekender trivia challenge: October 31, 2026",
+      "datetime_iso8601": "20261031T040000+1300",
+      "embed": "https://www.riddle.com/embed/a/KOQjMxAg"
+    },
+    {
+      "id": "361037931",
+      "title": "Stuff quiz: Trick or Treat?",
+      "datetime_iso8601": "20261031T040000+1300",
+      "embed": "https://www.riddle.com/embed/a/VtPxrGI7"
+    },
+    {
       "id": "361046563",
       "title": "Stuff Quiz: Afternoon trivia challenge October 30, 2026",
       "datetime_iso8601": "20261030T150000+1300",
@@ -199,12 +211,6 @@
       "embed": "https://www.riddle.com/embed/a/cWdKwgxE"
     },
     {
-      "id": "361043002",
-      "title": "Stuff Quiz: Afternoon trivia challenge October 19, 2026",
-      "datetime_iso8601": "20261019T150000+1300",
-      "embed": "https://www.riddle.com/embed/a/jl15nuc6"
-    },
-    {
       "id": "361042280",
       "title": "Stuff quiz: Kids trivia challenge: October 18, 2026",
       "datetime_iso8601": "20261018T150000+1300",
@@ -251,12 +257,6 @@
       "title": "Stuff quiz: The week that was news quiz for October 4, 2026",
       "datetime_iso8601": "20261004T040000+1300",
       "embed": "https://www.riddle.com/embed/a/m4Jkiq00"
-    },
-    {
-      "id": "361035607",
-      "title": "Stuff quiz: Weekender trivia challenge: October 3, 2026",
-      "datetime_iso8601": "20261003T040000+1300",
-      "embed": "https://www.riddle.com/embed/a/PXifM11R"
     },
     {
       "id": "361034784",
