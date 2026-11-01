@@ -1,6 +1,18 @@
 {
   "stories": [
     {
+      "id": "361043962",
+      "title": "Stuff Quiz: The Hard Word: November 2, 2026",
+      "datetime_iso8601": "20261102T090000+1300",
+      "embed": "https://www.riddle.com/embed/a/IcPCK2Tw"
+    },
+    {
+      "id": "361050842",
+      "title": "Stuff quiz: Morning trivia challenge: November 2, 2026",
+      "datetime_iso8601": "20261102T040000+1300",
+      "embed": "https://www.riddle.com/embed/a/NJSVByjj"
+    },
+    {
       "id": "361047974",
       "title": "Stuff quiz: Kids trivia challenge: November 1, 2026",
       "datetime_iso8601": "20261101T150000+1300",
@@ -209,18 +221,6 @@
       "title": "Stuff quiz: Morning trivia challenge: October 21, 2026",
       "datetime_iso8601": "20261021T040000+1300",
       "embed": "https://www.riddle.com/embed/a/yU30FQub"
-    },
-    {
-      "id": "361048104",
-      "title": "Stuff quiz: Leaders’ debate: Who said what?",
-      "datetime_iso8601": "20261020T204058+1300",
-      "embed": "https://www.riddle.com/embed/a/eybwBPWe"
-    },
-    {
-      "id": "361043133",
-      "title": "Stuff Quiz: Afternoon trivia challenge October 20, 2026",
-      "datetime_iso8601": "20261020T150000+1300",
-      "embed": "https://www.riddle.com/embed/a/AACe1PCU"
     },
     {
       "id": "361042280",
