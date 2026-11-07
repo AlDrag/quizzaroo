@@ -1,6 +1,12 @@
 {
   "stories": [
     {
+      "id": "361055920",
+      "title": "Stuff quiz: The week that was news quiz for November 8, 2026",
+      "datetime_iso8601": "20261108T040000+1300",
+      "embed": "https://www.riddle.com/embed/a/hIbQRJh2"
+    },
+    {
       "id": "361043991",
       "title": "Stuff Quiz: The Really Hard Word: November 7, 2026",
       "datetime_iso8601": "20261107T150000+1300",
@@ -257,12 +263,6 @@
       "title": "Stuff quiz: Kids trivia challenge: October 11, 2026",
       "datetime_iso8601": "20261011T150000+1300",
       "embed": "https://www.riddle.com/embed/a/JVKDWx1b"
-    },
-    {
-      "id": "361044593",
-      "title": "Stuff quiz: The week that was news quiz for October 11, 2026",
-      "datetime_iso8601": "20261011T040000+1300",
-      "embed": "https://www.riddle.com/embed/a/NEpmgkEY"
     },
     {
       "id": "361034784",
