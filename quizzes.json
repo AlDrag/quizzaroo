@@ -1,6 +1,18 @@
 {
   "stories": [
     {
+      "id": "361046978",
+      "title": "Stuff Quiz: The Hard Word: November 13, 2026",
+      "datetime_iso8601": "20261113T090000+1300",
+      "embed": "https://www.riddle.com/embed/a/UWRlERAB"
+    },
+    {
+      "id": "361053623",
+      "title": "Stuff quiz: Morning trivia challenge: November 13, 2026",
+      "datetime_iso8601": "20261113T040000+1300",
+      "embed": "https://www.riddle.com/embed/a/4AY1YIK9"
+    },
+    {
       "id": "361052198",
       "title": "Stuff Quiz: Afternoon trivia challenge November 12, 2026",
       "datetime_iso8601": "20261112T150000+1300",
@@ -205,22 +217,10 @@
       "embed": "https://www.riddle.com/embed/a/NqNij9ED"
     },
     {
-      "id": "361041026",
-      "title": "Stuff Quiz: The Really Hard Word: November 1, 2026",
-      "datetime_iso8601": "20261101T140000+1300",
-      "embed": "https://www.riddle.com/embed/a/SJ4dRm6n"
-    },
-    {
       "id": "361053039",
       "title": "Stuff quiz: The week that was news quiz for November 1, 2026",
       "datetime_iso8601": "20261101T040000+1300",
       "embed": "https://www.riddle.com/embed/a/FU0rVAwn"
-    },
-    {
-      "id": "361041001",
-      "title": "Stuff Quiz: The Really Hard Word: October 31, 2026",
-      "datetime_iso8601": "20261031T150000+1300",
-      "embed": "https://www.riddle.com/embed/a/aD9nuMPJ"
     },
     {
       "id": "361047971",
