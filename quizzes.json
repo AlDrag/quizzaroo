@@ -1,6 +1,18 @@
 {
   "stories": [
     {
+      "id": "361054928",
+      "title": "Stuff quiz: Morning trivia challenge: November 18, 2026",
+      "datetime_iso8601": "20261118T040000+1300",
+      "embed": "https://www.riddle.com/embed/a/3Ls67E8J"
+    },
+    {
+      "id": "361054599",
+      "title": "Stuff Quiz: Afternoon trivia challenge November 17, 2026",
+      "datetime_iso8601": "20261117T150000+1300",
+      "embed": "https://www.riddle.com/embed/a/WUGoyRKk"
+    },
+    {
       "id": "361049700",
       "title": "Stuff Quiz: The Hard Word: November 17, 2026",
       "datetime_iso8601": "20261117T090000+1300",
@@ -215,18 +227,6 @@
       "title": "<strong id=\"strong\">Discover your perfect summer wine in two minutes</strong>",
       "datetime_iso8601": "20261105T082001+1300",
       "embed": "https://www.riddle.com/embed/a/424SHTN0"
-    },
-    {
-      "id": "361050854",
-      "title": "Stuff quiz: Morning trivia challenge: November 5, 2026",
-      "datetime_iso8601": "20261105T040000+1300",
-      "embed": "https://www.riddle.com/embed/a/YXH2cGkH"
-    },
-    {
-      "id": "361049239",
-      "title": "Stuff Quiz: Afternoon trivia challenge November 4, 2026",
-      "datetime_iso8601": "20261104T150000+1300",
-      "embed": "https://www.riddle.com/embed/a/vdm48PQ8"
     },
     {
       "id": "361047974",
