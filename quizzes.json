@@ -1,6 +1,12 @@
 {
   "stories": [
     {
+      "id": "361055022",
+      "title": "Stuff quiz: Weekender trivia challenge: November 21, 2026",
+      "datetime_iso8601": "20261121T040000+1300",
+      "embed": "https://www.riddle.com/embed/a/6gbtioE4"
+    },
+    {
       "id": "361055106",
       "title": "Stuff Quiz: Afternoon trivia challenge November 20, 2026",
       "datetime_iso8601": "20261120T150000+1300",
@@ -257,12 +263,6 @@
       "title": "Stuff quiz: The week that was news quiz for October 25, 2026",
       "datetime_iso8601": "20261025T040000+1300",
       "embed": "https://www.riddle.com/embed/a/PdtXbzrC"
-    },
-    {
-      "id": "361044816",
-      "title": "Stuff quiz: Weekender trivia challenge: October 24, 2026",
-      "datetime_iso8601": "20261024T040000+1300",
-      "embed": "https://www.riddle.com/embed/a/DaaniPIx"
     },
     {
       "id": "361034784",
